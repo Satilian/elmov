@@ -1,6 +1,6 @@
 using System;
 
-namespace elmovApi
+namespace ElmoveApi
 {
     public class WeatherForecast
     {

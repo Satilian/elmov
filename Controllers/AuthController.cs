@@ -32,12 +32,12 @@ namespace ElmoveApi.Controllers
          [Route("signin")]
         public async Task<ActionResult> Signin(SignInRequest req)
         {
-            if (ModelState.IsValid) 
+            if (ModelState.IsValid)
             {
                 SignUpRequest user = await db.users.Get(req);
                 if (user != null)
                 {
-                    await Authenticate(user.Username, user.Role);
+                    await Authenticate(user.Username);
                     return Ok();
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
@@ -45,7 +45,7 @@ namespace ElmoveApi.Controllers
             return new StatusCodeResult(403);
         }
 
-        private async Task Authenticate(string username, string role)
+        private async Task Authenticate(string username, string role = "user")
         {
             var claims = new List<Claim>
             {

@@ -23,7 +23,8 @@ namespace ElmoveApi
             {
                 options.Cookie.Name = "access_token";
                 options.Cookie.SameSite = SameSiteMode.None;
-                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+                options.Cookie.HttpOnly = false;
             });
             services.AddControllers();
         }

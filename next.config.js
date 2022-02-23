@@ -3,7 +3,10 @@
 const path = require('path');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
+const isDev = process.env.NODE_ENV !== 'production';
+
 module.exports = {
+  swcMinify: !isDev,
   reactStrictMode: true,
   sassOptions: {
     includePaths: [path.resolve(__dirname, 'src/styles/')],

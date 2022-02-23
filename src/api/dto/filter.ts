@@ -3,5 +3,5 @@ export interface IBaseFilter {
   price: {
     from?: number;
     to?: number;
-  }
-} 
+  };
+}

@@ -1,9 +1,5 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  parserOptions: {
-    project: 'tsconfig.json',
-    sourceType: 'module',
-  },
   plugins: ['@typescript-eslint/eslint-plugin'],
   extends: [
     'plugin:@typescript-eslint/recommended',
@@ -47,10 +43,11 @@ module.exports = {
         requirePragma: false,
         semi: true,
         tabWidth: 2,
-        trailingComma: "es5",
+        trailingComma: "all",
         useTabs: false,
         vueIndentScriptAndStyle: false,
         printWidth: 100,
+        singleQuote: true,
       },
     ],
   },

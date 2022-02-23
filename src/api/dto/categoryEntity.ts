@@ -1,4 +1,4 @@
-import { IBaseFilter } from "./filter";
+import { IBaseFilter } from './filter';
 
 export interface ICategoryEntity {
   id: string;

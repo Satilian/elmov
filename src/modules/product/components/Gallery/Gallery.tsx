@@ -20,7 +20,7 @@ export const Gallery = ({ items }: IProps) => {
       </PreviewWrapper>
 
       <ImageWrapper>
-        <Image src={`${imagePath}${active}`} alt={active} width="25vw" height="25vw" />
+        <Image src={`${imagePath}${active}`} alt={active} layout="fill" />
       </ImageWrapper>
     </Container>
   );
@@ -64,10 +64,6 @@ const ImageWrapper = styled.div`
   @import 'variables';
   width: 25vw;
   height: 25vw;
-  object-fit: cover;
   border: 1px solid $green;
-  img {
-    width: 100%;
-    height: 100%;
-  }
+  position: relative;
 `;

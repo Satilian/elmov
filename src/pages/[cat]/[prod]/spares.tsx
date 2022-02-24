@@ -1,6 +1,6 @@
-import { getProductLayout } from "components/ProductLayout";
-import { PageType } from "interfaces/pageType";
-import React from "react";
+import { getProductLayout } from 'modules/product/components/ProductLayout';
+import { PageType } from 'interfaces/pageType';
+import React from 'react';
 
 const Spares: PageType = () => {
   return <div>Parts</div>;

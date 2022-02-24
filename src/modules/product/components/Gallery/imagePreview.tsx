@@ -11,7 +11,7 @@ interface IProps {
 export const ImagePreview = ({ name, onClick }: IProps) => {
   return (
     <Container onClick={onClick}>
-      <Image src={`${imagePath}${name}`} alt={name} width="8vw" height="8vw" />
+      <Image src={`${imagePath}${name}`} alt={name} width="100%" height="100%" />
     </Container>
   );
 };
@@ -21,4 +21,6 @@ const Container = styled.div`
   overflow: hidden;
   border: 1px solid $green;
   margin-bottom: 0.5vw;
+  width: 8vw;
+  height: 8vw;
 `;

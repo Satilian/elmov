@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import React, { SyntheticEvent, useEffect, useState } from 'react';
 import { Anchor } from './Anchor';
 import { MenuItemType } from 'interfaces/menuItem';
+import Image from 'next/image';
 
 interface IProps extends MenuItemType {
   topLevel?: boolean;
@@ -57,9 +58,9 @@ export const MenuItem = ({
           <>
             <Title>{title}</Title>
             {img && (
-              <Image>
-                <img src={img} />
-              </Image>
+              <ImageWrapper>
+                <Image src={img} alt={img} width="100%" height="100%" />
+              </ImageWrapper>
             )}
           </>
         )}
@@ -129,13 +130,9 @@ const Title = styled.div`
   text-align: center;
 `;
 
-const Image = styled.div`
+const ImageWrapper = styled.div`
   width: 5vw;
+  max-height: 5vw;
   align-self: center;
   margin: 0 10px;
-
-  img {
-    width: 100%;
-    max-height: 5vw;
-  }
 `;

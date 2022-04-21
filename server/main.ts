@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import next from 'next';
 import { Request, Response, NextFunction } from 'express';
 import 'dotenv/config';
+import 'reflect-metadata';
 
 const hostname = process.env.HOST_NAME;
 const port = parseInt(process.env.PORT, 10);

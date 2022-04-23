@@ -1,6 +1,6 @@
 import styled from 'astroturf/react';
 import { imagePath } from 'consts/common';
-import { Button } from 'elements/Button';
+import { Button } from 'components/Button';
 import { categorySelectors } from 'modules/category/categoryState';
 import Image from 'next/image';
 import Link from 'next/link';

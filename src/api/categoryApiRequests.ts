@@ -1,5 +1,7 @@
 import { BaseRequest } from './BaseRequest';
 
-export class CategoryApiRequests extends BaseRequest {
+class CategoryRepo extends BaseRequest {
   getOne = (id: string) => this.get(`category/${id}`);
 }
+
+export const categoryRepo = new CategoryRepo();

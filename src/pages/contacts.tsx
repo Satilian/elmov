@@ -1,8 +1,8 @@
-import { getLayout } from "components/Layout";
-import { PageType } from "interfaces/pageType";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import * as ui from "modules/ui/uiState";
+import { getLayout } from 'components/Layout';
+import { PageType } from 'interfaces/pageType';
+import * as ui from 'modules/ui/uiState';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Contacts: PageType = () => {
   const menuIsOpen = useSelector(ui.selectors.menuIsOpen);

@@ -1,6 +1,6 @@
 import styled from 'astroturf/react';
 import React from 'react';
-import { Bootstrap } from '../elements/Bootstrap';
+import { Bootstrap } from './Bootstrap';
 
 export const Footer = () => (
   <Wrapper>

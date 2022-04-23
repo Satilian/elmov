@@ -1,5 +1,5 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
-import { TState } from 'store';
+import { State } from 'store';
 
 export interface IUiState {
   menu: {
@@ -27,7 +27,7 @@ export const { actions, reducer } = createSlice({
   },
 });
 
-const state = ({ ui }: TState) => ui;
+const state = ({ ui }: State) => ui;
 
 export const selectors = {
   menuIsOpen: createSelector(state, ({ menu }) => menu.isOpen),

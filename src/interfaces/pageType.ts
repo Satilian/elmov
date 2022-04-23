@@ -1,9 +1,9 @@
 import { NextPage } from 'next';
-import { TState } from 'store';
+import { State } from 'store';
 
 export type PageType = NextPage & { getLayout?: (page: JSX.Element) => JSX.Element };
 
 export type PageProps = {
-  initialReduxState: TState;
+  initialReduxState: State;
   [key: string]: unknown;
 };

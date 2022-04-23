@@ -1,6 +1,6 @@
 export interface IBaseFilter {
-  name: string;
-  price: {
+  name?: string;
+  price?: {
     from?: number;
     to?: number;
   };

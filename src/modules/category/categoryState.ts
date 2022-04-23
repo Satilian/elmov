@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit';
 import { ICategoryEntity } from 'api/dto/categoryEntity';
 import { IBaseFilter } from 'api/dto/filter';
-import { TState } from 'store';
+import { State } from 'store';
 import { items } from './mock';
 
 export interface ICategoryState {
@@ -42,7 +42,7 @@ export const { reducer } = createSlice({
   },
 });
 
-const state = ({ category }: TState) => category;
+const state = ({ category }: State) => category;
 
 export const categorySelectors = {
   category: createSelector(state, ({ meta }) => meta),

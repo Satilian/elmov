@@ -1,6 +1,6 @@
 import styled from 'astroturf/react';
 import { menuItems } from 'consts/menuItems';
-import { MenuSpacer } from 'elements/MenuSpacer';
+import { MenuSpacer } from 'components/MenuSpacer';
 import { useRouter } from 'next/router';
 import React, { FC } from 'react';
 import { Footer } from '../components/Footer';

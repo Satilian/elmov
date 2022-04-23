@@ -10,7 +10,8 @@
     "build": "cross-env NODE_ENV=production nest build -p ./tsconfig.server.json",
     "start": "rimraf dist .next && nest start -p ./tsconfig.server.json --watch",
     "debug": "nest start-p ./tsconfig.server.json --debug --watch",
-    "server": "node dist/main"
+    "server": "node dist/main",
+    "typeorm": "typeorm-ts-node-esm"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
@@ -52,6 +53,7 @@
     "prettier": "^2.3.2",
     "sass": "^1.49.8",
     "ts-loader": "^9.2.3",
+    "ts-node": "^10.7.0",
     "typescript": "^4.5.5"
   }
 }

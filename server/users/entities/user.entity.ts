@@ -5,12 +5,24 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({ nullable: false })
+  password: string;
+
+  @Column({ nullable: false })
+  email: string;
+
+  @Column()
+  phone: string;
+
+  @Column()
+  login: string;
+
   @Column()
   firstName: string;
 
   @Column()
   lastName: string;
 
-  @Column({ default: true })
+  @Column({ default: false })
   isActive: boolean;
 }

@@ -6,6 +6,7 @@
   "password": "1zad2bulki",
   "database": "elmov",
   "entities": ["dist/**/*.entity{.ts,.js}"],
+  "autoLoadEntities": true,
   "synchronize": true,
   "logging": true
 }

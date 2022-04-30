@@ -21,7 +21,7 @@ export const signup = createAsyncThunk<UpdateUserDto, CreateUserDto, ThunkApiTyp
     ),
 );
 
-export const { reducer } = createSlice({
+export const { reducer: authReducer } = createSlice({
   name: 'auth',
   initialState,
   reducers: {},

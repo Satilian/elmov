@@ -15,7 +15,7 @@ export const get = createAsyncThunk('users/fetchByIdStatus', async () => {
   return response;
 });
 
-export const { reducer } = createSlice({
+export const { reducer: productReducer } = createSlice({
   name: 'product',
   initialState,
   reducers: {},

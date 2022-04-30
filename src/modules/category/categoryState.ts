@@ -30,7 +30,7 @@ export const getOne = createAsyncThunk('users/fetchByIdStatus', async () => {
   return response;
 });
 
-export const { reducer } = createSlice({
+export const { reducer: categoryReducer } = createSlice({
   name: 'category',
   initialState,
   reducers: {},

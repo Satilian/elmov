@@ -11,7 +11,7 @@ export const Signup = () => {
   const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<CreateUserDto> = (data) => {
-    dispatch(signup(data));
+    dispatch(signup(data)).unwrap().then(console.log);
   };
 
   return (

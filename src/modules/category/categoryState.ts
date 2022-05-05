@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit';
+import { categoryRepo } from 'api/categoryRepo';
 import { ICategoryEntity } from 'api/dto/categoryEntity';
 import { IBaseFilter } from 'api/dto/filter';
+import { ThunkApiType } from 'interfaces/common';
 import { State } from 'store';
 import { items } from './mock';
 
@@ -25,10 +27,10 @@ export const initialState: ICategoryState = {
   },
 };
 
-export const getOne = createAsyncThunk('users/fetchByIdStatus', async () => {
-  const response = await Promise.resolve([]);
-  return response;
-});
+export const getAllCategories = createAsyncThunk<any, undefined, ThunkApiType>(
+  'category/getAll',
+  (_, { rejectWithValue }) => categoryRepo.fetchAll().catch((error) => rejectWithValue({ error })),
+);
 
 export const { reducer: categoryReducer } = createSlice({
   name: 'category',
@@ -36,9 +38,12 @@ export const { reducer: categoryReducer } = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getOne.pending, (state) => ({ ...state, isLoading: true }))
-      .addCase(getOne.rejected, (state, { error }) => ({ ...state, isLoading: false }))
-      .addCase(getOne.fulfilled, (state, { payload }) => ({ ...state, isLoading: false }));
+      .addCase(getAllCategories.pending, (state) => ({ ...state, isLoading: true }))
+      .addCase(getAllCategories.rejected, (state) => ({ ...state, isLoading: false }))
+      .addCase(getAllCategories.fulfilled, (state, { payload }) => {
+        console.log(payload);
+        return { ...state, isLoading: false };
+      });
   },
 });
 

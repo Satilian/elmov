@@ -5,6 +5,14 @@ import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { Category } from './entities/category.entity';
 
+const getItems = (count: number) =>
+  new Array(count).fill(null).map((_: any, i: number) => ({
+    id: `id-${i}`,
+    name: `item ${i} name`,
+    price: i * 100,
+    image: `${i}.png`,
+  }));
+
 @Injectable()
 export class CategoriesService {
   constructor(@InjectRepository(Category) private categoryRepository: Repository<Category>) {}
@@ -14,7 +22,7 @@ export class CategoriesService {
   }
 
   findAll() {
-    return `This action returns all categories`;
+    return getItems(4);
   }
 
   findOne(id: number) {

@@ -2,12 +2,15 @@ import styled from 'astroturf/react';
 import { menuItems } from 'consts/menuItems';
 import { MenuSpacer } from 'components/MenuSpacer';
 import { useRouter } from 'next/router';
-import React, { FC } from 'react';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { Menu } from '../modules/ui/components/Menu/Menu';
 
-export const Layout: FC = ({ children }) => {
+type Props = {
+  children?: React.ReactNode;
+};
+
+export const Layout = ({ children }: Props) => {
   const { pathname } = useRouter();
 
   return (

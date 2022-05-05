@@ -15,11 +15,14 @@ export const initialState = {
   },
 };
 
-export const { actions, reducer: uiReducer } = createSlice({
+export const { actions: uiActions, reducer: uiReducer } = createSlice({
   name: 'ui',
   initialState,
   reducers: {
-    toggle: (state) => ({ ...state, menu: { ...state.menu, isOpen: !state.menu.isOpen } }),
+    toggle: (state) => ({
+      ...state,
+      menu: { ...state.menu, isOpen: !state.menu.isOpen, subMenu: '' },
+    }),
     setSubMenu: (state, { payload: subMenu }) => ({
       ...state,
       menu: { ...state.menu, subMenu, isOpen: true },
@@ -29,7 +32,7 @@ export const { actions, reducer: uiReducer } = createSlice({
 
 const state = ({ ui }: State) => ui;
 
-export const selectors = {
+export const uiSelectors = {
   menuIsOpen: createSelector(state, ({ menu }) => menu.isOpen),
   subMenu: createSelector(state, ({ menu }) => menu.subMenu),
 };

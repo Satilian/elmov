@@ -1,5 +1,5 @@
 export class BaseRequest {
-  constructor(private readonly baseUrl = '/api/') {
+  constructor(private readonly baseUrl = process.env.HOST_NAME + ':' + process.env.PORT + '/api/') {
     this.headers.set('Accept', 'application/json');
     this.headers.set('Content-type', 'application/json');
   }
@@ -11,6 +11,7 @@ export class BaseRequest {
   };
 
   fetch = async (url: string, config?: Record<string, unknown>) => {
+    console.log(this.baseUrl + url);
     try {
       const res = await fetch(this.baseUrl + url, { headers: this.headers, ...config });
       if (!res.status || res.status < 200 || res.status >= 300) throw res;

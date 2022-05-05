@@ -8,6 +8,9 @@ const isDev = process.env.NODE_ENV !== 'production';
 module.exports = {
   swcMinify: !isDev,
   reactStrictMode: true,
+  compiler: {
+    styledComponents: true,
+  },
   sassOptions: {
     includePaths: [path.resolve(__dirname, 'src/styles/')],
   },
@@ -18,7 +21,7 @@ module.exports = {
       use: [
         {
           loader: 'astroturf/loader',
-          options: { extension: '.module.scss', enableCssProp: true },
+          options: { extension: '.module.scss' },
         },
       ],
     });

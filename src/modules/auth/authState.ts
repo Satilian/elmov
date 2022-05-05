@@ -2,8 +2,6 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { IBaseFilter } from 'api/dto/filter';
 import { ThunkApiType } from 'interfaces/common';
 import { State } from 'store';
-import { CreateUserDto } from '../../../server/users/dto/create-user.dto';
-import { UpdateUserDto } from '../../../server/users/dto/update-user.dto';
 
 export interface IAuthState {
   isLoading?: boolean;
@@ -13,12 +11,10 @@ export interface IAuthState {
 
 export const initialState: IAuthState = {};
 
-export const signup = createAsyncThunk<UpdateUserDto, CreateUserDto, ThunkApiType>(
+export const signup = createAsyncThunk<any, any, ThunkApiType>(
   'auth/signup',
   (user, { rejectWithValue }) =>
-    Promise.resolve({ id: 1, ...user } as UpdateUserDto).catch((error) =>
-      rejectWithValue({ error }),
-    ),
+    Promise.resolve({ id: 1, ...user }).catch((error) => rejectWithValue({ error })),
 );
 
 export const { reducer: authReducer } = createSlice({

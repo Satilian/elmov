@@ -1,11 +1,11 @@
 import styled from 'astroturf/react';
 import { CrossIcon } from 'icons/CrossIcon';
 import { MenuItemType } from 'interfaces/menuItem';
+import { uiActions, uiSelectors } from 'modules/ui/uiState';
 import { useRouter } from 'next/router';
 import React, { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { MenuItem } from './MenuItem';
-import * as ui from 'modules/ui/uiState';
 
 interface IProps {
   items: MenuItemType[];
@@ -13,20 +13,20 @@ interface IProps {
 }
 
 export const Menu = ({ items, topLevel }: IProps) => {
-  const subMenu = useSelector(ui.selectors.subMenu);
-  const isOpen = useSelector(ui.selectors.menuIsOpen);
+  const subMenu = useSelector(uiSelectors.subMenu);
+  const isOpen = useSelector(uiSelectors.menuIsOpen);
   const { asPath } = useRouter();
   const dispatch = useDispatch();
 
   return (
     <Container topLevel={topLevel}>
       {topLevel && isOpen && subMenu && (
-        <Icon main={asPath === '/'} onClick={() => dispatch(ui.actions.toggle())} />
+        <Icon main={asPath === '/'} onClick={() => dispatch(uiActions.toggle())} />
       )}
       {items.map(({ link, subRouts, ...item }, i) => (
         <Fragment key={link}>
           <MenuItem
-            onClick={() => dispatch(ui.actions.setSubMenu(link))}
+            onClick={() => dispatch(uiActions.setSubMenu(link))}
             link={link}
             topLevel={topLevel}
             delay={i * 100}

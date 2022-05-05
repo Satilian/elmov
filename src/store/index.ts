@@ -45,7 +45,7 @@ const storeCreator = (preloadedState: unknown) =>
 export let store: ReturnType<typeof storeCreator>;
 export let persistor: Persistor;
 
-const initStore = (preloadedState?: State) => {
+export const initStore = (preloadedState?: State) => {
   isServer || !store ? (store = storeCreator(preloadedState)) : store;
   !isServer && !persistor && (persistor = persistStore(store));
 

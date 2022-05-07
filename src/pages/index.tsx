@@ -1,7 +1,11 @@
 import React from 'react';
+import { getLayout } from 'client/components/Layout';
+import { Main } from 'client/components/Main';
 
 const Home = () => {
-  return <div>home page</div>;
+  return <Main />;
 };
+
+Home.getLayout = getLayout;
 
 export default Home;

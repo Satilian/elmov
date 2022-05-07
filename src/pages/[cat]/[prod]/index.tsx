@@ -1,0 +1,17 @@
+import { getLayout } from 'client/components/Layout';
+import { PageType } from 'client/interfaces/pageType';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import { productRouts } from 'client/routs/productRouts';
+
+const Product: PageType = () => {
+  const { pathname, asPath, replace } = useRouter();
+  useEffect(() => {
+    replace(`${pathname}${productRouts.feature.link}`, `${asPath}${productRouts.feature.link}`);
+  }, []);
+  return null;
+};
+
+Product.getLayout = getLayout;
+
+export default Product;

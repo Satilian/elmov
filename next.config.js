@@ -12,7 +12,7 @@ module.exports = {
     styledComponents: true,
   },
   sassOptions: {
-    includePaths: [path.resolve(__dirname, 'src/styles/')],
+    includePaths: [path.resolve(__dirname, 'src/client/styles/')],
   },
   webpack(config) {
     config.module.rules.push({

@@ -1,25 +1,13 @@
 {
+  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "jsx": "preserve",
     "module": "commonjs",
-    "target": "es2017",
-    "declaration": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "./server",
-    "incremental": true,
-    "skipLibCheck": true,
-    "strictNullChecks": false,
-    "noImplicitAny": false,
-    "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false,
+    "target": "ESNext",
+    "outDir": "dist",
+    "noEmit": false
   },
-  "exclude": ["node_modules", "dist", ".next", "src"],
-  "include": ["server/**/*.ts", "server/**/*.tsx"],
+  "include": [
+    "src/server",
+    "src/shared"
+  ]
 }

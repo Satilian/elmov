@@ -7,38 +7,34 @@
     ],
     "module": "esnext",
     "moduleResolution": "node",
-    "target": "es2015",
+    "target": "es6",
     "jsx": "preserve",
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "baseUrl": "./src",
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
     "noImplicitAny": false,
     "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": false,
+    "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": false,
     "allowJs": true,
     "strict": true,
-    "noEmit": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "noEmit": true,
+    "baseUrl": "src"
   },
   "exclude": [
-    "node_modules",
-    "dist",
-    ".next"
+    "node_modules"
   ],
   "include": [
-    "next.config.js",
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.scss"
+    "src/pages",
+    "src/client",
+    "src/shared"
   ]
 }

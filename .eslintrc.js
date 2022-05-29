@@ -1,17 +1,14 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint/eslint-plugin', 'react', 'prettier'],
+  plugins: ['@typescript-eslint/eslint-plugin', 'prettier'],
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
-    "plugin:react/recommended",
-    "next/core-web-vitals",
     "prettier",
   ],
   root: true,
   env: {
     node: true,
-    jest: true,
   },
   ignorePatterns: ['.eslintrc.js'],
   rules: {
@@ -25,11 +22,6 @@ module.exports = {
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/no-empty-function": "off",
     '@typescript-eslint/no-explicit-any': 'off',
-    "react/prop-types": 0,
-    "react/display-name": 0,
-    "@next/next/no-document-import-in-page": "off",
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "off",
     "prettier/prettier": [
       "warn",
       {

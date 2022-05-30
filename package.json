@@ -8,16 +8,17 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
-    "start": "nest start",
-    "dev": "nest start --watch",
-    "debug": "nest start --debug --watch",
-    "prod": "node dist/main"
+    "start": "env-cmd -f .env.dev nest start --watch",
+    "prod": "env-cmd node dist/main",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "nest": "nest"
   },
   "dependencies": {
     "@nestjs/common": "^8.4.5",
     "@nestjs/core": "^8.4.5",
     "@nestjs/platform-express": "^8.4.5",
     "@nestjs/serve-static": "^2.2.2",
+    "env-cmd": "^10.1.0",
     "pg": "^8.7.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "@nestjs/cli": "^8.2.6",
+    "@nestjs/schematics": "^8.0.11",
     "@types/express": "^4.17.13",
     "@types/node": "^17.0.36",
     "@typescript-eslint/eslint-plugin": "^5.26.0",

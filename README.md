@@ -9,20 +9,17 @@
 ## Installation
 
 ```bash
-$ npm install
+$ yarn
 ```
 
 ## Running the app
 
 ```bash
 # development
-$ npm run start
-
-# watch mode
-$ npm run dev
+$ yarn start
 
 # production mode
-$ npm run prod
+$ yarn prod
 ```
 
 ## Support

@@ -11,6 +11,7 @@ export const dbProvider = {
       password: process.env.DB_PASS,
       database: 'elmov',
       entities: ['dist/**/*.entity{.ts,.js}'],
+      migrations: ['dist/migrations/*{.ts,.js}'],
       synchronize: true,
       logging: true,
     }).initialize(),

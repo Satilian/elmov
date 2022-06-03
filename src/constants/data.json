@@ -1,0 +1,30 @@
+{
+  "pages": [
+    {
+      "path": "/",
+      "name": "main page",
+      "childrens": [
+        {
+          "path": "/scooters",
+          "name": "scooters"
+        },
+        {
+          "path": "/bicycles",
+          "name": "bicycles"
+        },
+        {
+          "path": "/hoverboards",
+          "name": "hoverboards"
+        },
+        {
+          "path": "/monowheels",
+          "name": "monowheels"
+        },
+        {
+          "path": "/segways",
+          "name": "segways"
+        }
+      ]
+    }
+  ]
+}

@@ -3,8 +3,11 @@ import { Column, Entity, PrimaryGeneratedColumn, Tree, TreeChildren, TreeParent 
 @Entity()
 @Tree('nested-set')
 export class Page {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
+
+  @Column()
+  path: string;
 
   @Column()
   name: string;

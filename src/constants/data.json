@@ -1,28 +1,162 @@
 {
+  "pageTypes": [
+    { "name": "main"},
+    { "name": "catalog"},
+    { "name": "product"},
+    { "name": "contacts"},
+    { "name": "admin"}
+  ],
+  "catalog": [
+    { "imgId": "", "pageId": "" }
+  ],
+  "images": [
+    {"category": "menu", "name": "samokat.png", "page": "/scooters" },
+    {"category": "menu", "name": "velo.png", "page": "/bicycles" },
+    {"category": "menu", "name": "giro.png", "page": "/hoverboards" },
+    {"category": "menu", "name": "kol.png", "page": "/monowheels" },
+    {"category": "menu", "name": "segways.png", "page": "/segways" },
+
+    {"category": "menu", "name": "samokat.png", "page": "/parts-for-scooters" },
+    {"category": "menu", "name": "velo.png", "page": "/parts-for-bicycles" },
+    {"category": "menu", "name": "giro.png", "page": "/parts-for-hoverboards" },
+    {"category": "menu", "name": "kol.png", "page": "/parts-for-monowheels" },
+    {"category": "menu", "name": "segways.png", "page": "/parts-for-segways" },
+
+    {"category": "menu", "name": "samokat.png", "page": "/scooters-repair" },
+    {"category": "menu", "name": "velo.png", "page": "/bicycles-repair" },
+    {"category": "menu", "name": "giro.png", "page": "/hoverboards-repair" },
+    {"category": "menu", "name": "kol.png", "page": "/monowheels-repair" },
+    {"category": "menu", "name": "segways.png", "page": "/segways-repairs" },
+    {"category": "menu", "name": "gidro.png", "page": "/waterproofing" }
+  ],
   "pages": [
     {
       "path": "/",
       "name": "main page",
+      "type": "main",
       "childrens": [
         {
-          "path": "/scooters",
-          "name": "scooters"
+          "path": "/transport",
+          "name": "Электротранспорт",
+          "type": "catalog",
+          "childrens": [
+            {
+              "path": "/scooters",
+              "name": "Самокаты",
+              "type": "catalog"
+            },
+            {
+              "path": "/bicycles",
+              "name": "Велосипеды",
+              "type": "catalog"
+            },
+            {
+              "path": "/hoverboards",
+              "name": "Гироскутеры",
+              "type": "catalog"
+            },
+            {
+              "path": "/monowheels",
+              "name": "Моноколёса",
+              "type": "catalog"
+            },
+            {
+              "path": "/segways",
+              "name": "Сигвеи",
+              "type": "catalog"
+            }
+          ]
         },
         {
-          "path": "/bicycles",
-          "name": "bicycles"
+          "path": "/parts",
+          "name": "Комплектующие",
+          "type": "catalog",
+          "childrens": [
+            {
+              "path": "/parts-for-scooters",
+              "name": "Запчасти для самокатов",
+              "type": "catalog"
+            },
+            {
+              "path": "/parts-for-bicycles",
+              "name": "Запчасти для велосипедов",
+              "type": "catalog"
+            },
+            {
+              "path": "/parts-for-hoverboards",
+              "name": "Запчасти для гироскутеров",
+              "type": "catalog"
+            },
+            {
+              "path": "/parts-for-monowheels",
+              "name": "Запчасти для моноколеса",
+              "type": "catalog"
+            },
+            {
+              "path": "/parts-for-segways",
+              "name": "Запчасти для сигвеев",
+              "type": "catalog"
+            }
+          ]
         },
         {
-          "path": "/hoverboards",
-          "name": "hoverboards"
+          "path": "/accums",
+          "name": "Аккумуляторы",
+          "type": "catalog",
+          "childrens": [
+            {
+              "path": "/battery-repair",
+              "name": "Ремонт и восстановление аккумуляторов",
+              "type": "catalog"
+            },
+            {
+              "path": "/battery-manufacturing",
+              "name": "Изготовление аккумуляторов",
+              "type": "catalog"
+            }
+          ]
         },
         {
-          "path": "/monowheels",
-          "name": "monowheels"
+          "path": "/repair",
+          "name": "Ремонт",
+          "type": "catalog",
+          "childrens": [
+            {
+              "path": "/scooters-repair",
+              "name": "Ремонт самокатов",
+              "type": "catalog"
+            },
+            {
+              "path": "/bicycles-repair",
+              "name": "Ремонт велосипедов",
+              "type": "catalog"
+            },
+            {
+              "path": "/hoverboards-repair",
+              "name": "Ремонт гироскутеров",
+              "type": "catalog"
+            },
+            {
+              "path": "/monowheels-repair",
+              "name": "Ремонт моноколеса",
+              "type": "catalog"
+            },
+            {
+              "path": "/segways-repairs",
+              "name": "Ремонт сигвеев",
+              "type": "catalog"
+            },
+            {
+              "path": "/waterproofing",
+              "name": "Гидроизоляция",
+              "type": "catalog"
+            }
+          ]
         },
         {
-          "path": "/segways",
-          "name": "segways"
+          "path": "/contacts",
+          "name": "Контакты",
+          "type": "contacts"
         }
       ]
     }

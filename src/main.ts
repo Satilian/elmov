@@ -6,6 +6,7 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const isCreated = await dbinit();
   const app = await NestFactory.create(AppModule);
+  app.setGlobalPrefix('api');
   isCreated && (await seedingData(app.get('DATA_SOURCE')));
 
   const port = process.env.PORT;

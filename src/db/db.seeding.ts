@@ -1,43 +1,47 @@
-import { Catalog } from 'catalog/catalog.entity';
-import { images, pages, pageTypes } from 'constants/data.json';
-import { ImageSrc } from 'images/image.entity';
-import { Page } from 'pages/page.entity';
-import { PageType } from 'pages/pageType.entity';
+import { Category } from 'entities/category.entity';
+import { images, pages, pageTypes, categoriesTree } from 'constants/data.json';
+import { Image } from 'entities/image.entity';
+import { Page } from 'entities/page.entity';
+import { PageType } from 'entities/pageType.entity';
 import { DataSource } from 'typeorm';
 
 export const seedingData = async (dataSource: DataSource) => {
   const pageTypesMap = {};
   await Promise.all(
-    pageTypes.map(({ name }) => {
+    pageTypes.map((name) => {
       const pageType = dataSource.manager.create(PageType, { name });
       return dataSource.manager.save(pageType).then((type) => (pageTypesMap[type.name] = type.id));
     }),
   );
 
-  const createPage = async (items, parent?: Page) => {
-    for (const { name, path, type, childrens } of items) {
-      const page = dataSource.manager.create(Page, {
-        name,
-        path,
-        typeId: pageTypesMap[type],
-        parent,
-      });
+  const pagesMap = {};
+  await Promise.all(
+    pages.map(({ path, name, type }) => {
+      const page = dataSource.manager.create(Page, { path, name, type: pageTypesMap[type] });
+      return dataSource.manager.save(page).then((page) => (pagesMap[page.path] = page.id));
+    }),
+  );
 
-      const { id: pageId } = await dataSource.manager.save(page);
+  const imagesMap = {};
+  await Promise.all(
+    images.map((src) => {
+      const image = dataSource.manager.create(Image, { src });
+      return dataSource.manager.save(image).then((image) => (imagesMap[image.src] = image.id));
+    }),
+  );
 
-      const { category, name: imageName } = images.find(({ page }) => page === path) || {};
+  type Tree = { page: string; image?: string; childrens?: Tree[] };
 
-      if (imageName) {
-        const imageSrc = dataSource.manager.create(ImageSrc, { category, name: imageName });
+  const createCategory = async (tree: Tree[], parent?: Category) => {
+    for (const cat of tree) {
+      const page = pagesMap[cat.page];
+      const image = imagesMap[cat.image];
+      const category = dataSource.manager.create(Category, { page, image, parent });
+      await dataSource.manager.save(category);
 
-        const { id: imageSrcId } = await dataSource.manager.save(imageSrc);
-        const catalog = dataSource.manager.create(Catalog, { imageSrcId, pageId });
-        await dataSource.manager.save(catalog);
-      }
-
-      if (childrens?.length) await createPage(childrens, page);
+      cat.childrens?.length && (await createCategory(cat.childrens, category));
     }
   };
 
-  await createPage(pages);
+  createCategory(categoriesTree);
 };

@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  server:
+    image: node:16
+    user: node
+    working_dir: /home/node/app
+    volumes:
+      - ./:/home/node/app
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
+    command: yarn start

@@ -1,0 +1,39 @@
+$white: white;
+$black: black;
+$green: #74975A;
+$green_t: #6aa43c70;
+$green_l: #A2B990;
+
+$shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+@mixin respond-to($media) {
+  @if $media == large {
+    @media screen and (max-width: 1550px) { @content; }
+  } 
+  @else if $media == medium {
+    @media screen and (max-width: 1250px) { @content; }
+  }
+  @else if $media == middle {
+    @media screen and (max-width: 920px) { @content; }
+  }
+  @else if $media == small {
+    @media screen and (max-width: 768px)  { @content; }
+  }
+  @else if $media == mobile {
+    @media screen and (max-width: 576px)  { @content; }
+  }
+}
+
+@mixin menu {
+  width: 18vw;
+  position: absolute;
+  left: 3vw;
+  top: 30px;
+}
+
+@mixin menuItemUp {
+  font-weight: 500;
+  box-shadow: 0 22px 43px rgba(0, 0, 0, 0.15);
+  transform: translateX(4px);
+  z-index: 12;
+}

@@ -1,42 +1,15 @@
 {
-  "name": "elmov-api",
-  "version": "0.0.1",
-  "description": "API - form electric-movements.ru",
-  "author": "Satilian",
+  "name": "root",
   "private": true,
-  "license": "UNLICENSED",
   "scripts": {
-    "prebuild": "rimraf dist",
-    "build": "nest build",
-    "start": "env-cmd -f .env.dev nest start --watch",
-    "prod": "env-cmd node dist/main",
-    "typeorm": "typeorm-ts-node-commonjs",
-    "nest": "nest"
-  },
-  "dependencies": {
-    "@nestjs/common": "^8.4.5",
-    "@nestjs/core": "^8.4.5",
-    "@nestjs/platform-express": "^8.4.5",
-    "@nestjs/serve-static": "^2.2.2",
-    "env-cmd": "^10.1.0",
-    "pg": "^8.7.3",
-    "reflect-metadata": "^0.1.13",
-    "rimraf": "^3.0.2",
-    "rxjs": "^7.5.5",
-    "typeorm": "^0.3.6"
+    "bootstrap": "yarn && lerna bootstrap",
+    "start": "yarn bootstrap && lerna run start",
+    "prod": "yarn bootstrap && lerna run prod",
+    "nx": "nx",
+    "graph": "nx graph"
   },
   "devDependencies": {
-    "@nestjs/cli": "^8.2.6",
-    "@nestjs/schematics": "^8.0.11",
-    "@types/express": "^4.17.13",
-    "@types/node": "^17.0.36",
-    "@typescript-eslint/eslint-plugin": "^5.26.0",
-    "@typescript-eslint/parser": "^5.26.0",
-    "eslint": "^8.16.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "prettier": "^2.6.2",
-    "ts-node": "^10.8.0",
-    "typescript": "^4.7.2"
+    "lerna": "^5.1.6",
+    "nx": "^14.4.0"
   }
 }

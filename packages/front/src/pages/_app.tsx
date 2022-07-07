@@ -23,5 +23,11 @@ _App.getInitialProps = async (appContext: AppContext) => {
   await store.dispatch(getCategoryTree());
   const props = await App.getInitialProps(appContext);
 
-  return { ...props, pageProps: { ...props.pageProps, initialState: store.getState() } };
+  return {
+    ...props,
+    pageProps: {
+      ...props.pageProps,
+      initialState: { ...props.pageProps.initialState, ...store.getState() },
+    },
+  };
 };

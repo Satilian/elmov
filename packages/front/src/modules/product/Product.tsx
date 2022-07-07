@@ -11,12 +11,15 @@ export const ProductPage = () => {
   const {
     query: { prod },
   } = useRouter();
+
   return (
     <Container>
       <Header>Product {prod}</Header>
+
       <Content>
         <Gallery items={items} />
       </Content>
+
       <Tabs items={productTabs} />
     </Container>
   );
@@ -29,12 +32,15 @@ const Container = styled.div`
   grid-gap: 20px;
   margin: 0 100px;
   flex: 1 0;
+
   @include respond-to(large) {
     margin: 0 75px;
   }
+
   @include respond-to(medium) {
     margin: 0 50px;
   }
+
   @include respond-to(middle) {
     margin: 0 30px;
   }

@@ -8,7 +8,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
-    "start": "env-cmd -f .env.dev nest start --watch",
+    "start": "rimraf dist && env-cmd -f .env.dev nest start --watch",
     "prod": "env-cmd nest build && node dist/main",
     "typeorm": "typeorm-ts-node-commonjs",
     "nest": "nest"

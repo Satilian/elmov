@@ -1,19 +1,23 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { productRep } from "api/productRep";
+import { CategoryDto } from "interfaces/page";
+import { ProductEntity } from "interfaces/product";
+import { ThunkApiType } from "interfaces/store";
 
 interface IProductState {
   isLoading: boolean;
-  product?: any;
-  error?: Error;
+  products?: ProductEntity[];
 }
 
 export const initialState: IProductState = {
   isLoading: false,
 };
 
-export const get = createAsyncThunk("users/fetchByIdStatus", async () => {
-  const response = await Promise.resolve();
-  return response;
-});
+export const getProductsByCategory = createAsyncThunk<
+  ProductEntity[],
+  CategoryDto["id"],
+  ThunkApiType
+>("product/getByCategory", (id) => productRep.fetchByCategory(id));
 
 export const { reducer: productReducer } = createSlice({
   name: "product",
@@ -21,8 +25,12 @@ export const { reducer: productReducer } = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(get.pending, (state) => ({ ...state, isLoading: true }))
-      .addCase(get.rejected, (state, { error }) => ({ ...state, isLoading: false }))
-      .addCase(get.fulfilled, (state, { payload }) => ({ ...state, isLoading: false }));
+      .addCase(getProductsByCategory.pending, (state) => ({ ...state, isLoading: true }))
+      .addCase(getProductsByCategory.rejected, (state) => ({ ...state, isLoading: false }))
+      .addCase(getProductsByCategory.fulfilled, (state, { payload: products }) => ({
+        ...state,
+        products,
+        isLoading: false,
+      }));
   },
 });

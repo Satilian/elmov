@@ -1,8 +1,8 @@
+import { categoriesTree, category, pages, pageTypes, productImages } from 'constants/data.json';
 import { Category } from 'entities/category.entity';
-import { images, pages, pageTypes, categoriesTree } from 'constants/data.json';
-import { Image } from 'entities/image.entity';
 import { Page } from 'entities/page.entity';
 import { PageType } from 'entities/pageType.entity';
+import { Product } from 'entities/product.entity';
 import { DataSource } from 'typeorm';
 
 export const seedingData = async (dataSource: DataSource) => {
@@ -22,26 +22,41 @@ export const seedingData = async (dataSource: DataSource) => {
     }),
   );
 
-  const imagesMap = {};
-  await Promise.all(
-    images.map((src) => {
-      const image = dataSource.manager.create(Image, { src });
-      return dataSource.manager.save(image).then((image) => (imagesMap[image.src] = image.id));
-    }),
-  );
-
   type Tree = { page: string; image?: string; childrens?: Tree[] };
 
+  const categoryMap = {};
   const createCategory = async (tree: Tree[], parent?: Category) => {
     for (const cat of tree) {
       const page = pagesMap[cat.page];
-      const image = imagesMap[cat.image];
+      const image = cat.image;
       const category = dataSource.manager.create(Category, { page, image, parent });
-      await dataSource.manager.save(category);
+      await dataSource.manager.save(category).then(({ id }) => (categoryMap[cat.page] = id));
 
       cat.childrens?.length && (await createCategory(cat.childrens, category));
     }
   };
 
-  createCategory(categoriesTree);
+  await createCategory(categoriesTree);
+
+  const productImagesMap = {};
+  await Promise.all(
+    productImages.map(async ({ product, images }) => {
+      productImagesMap[product] = images;
+    }),
+  );
+
+  await Promise.all(
+    category.map(async ({ name, items }) => {
+      await Promise.all(
+        items.map((path) => {
+          const product = dataSource.manager.create(Product, {
+            page: pagesMap[path],
+            images: productImagesMap[path],
+            category: categoryMap[name],
+          });
+          return dataSource.manager.save(product);
+        }),
+      );
+    }),
+  );
 };

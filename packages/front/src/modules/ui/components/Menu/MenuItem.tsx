@@ -44,7 +44,7 @@ export const MenuItem = ({
     };
   }, []);
 
-  const href = path === "/contacts" ? path : "/[cat]";
+  const href = `/${path === "contacts" ? path : "[cat]"}`;
 
   return (
     <Link href={href} as={path} passHref>

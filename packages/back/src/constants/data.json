@@ -2,60 +2,77 @@
   "pageTypes": ["main", "category", "product", "contacts", "admin"],
   "images": ["samokat.png", "velo.png", "giro.png", "kol.png", "segways.png", "gidro.png"],
   "categoriesTree": [
-    { "page": "/", "childrens": [
-      { "page": "/transport", "childrens": [
-        {"image": "samokat.png", "page": "/scooters" },
-        {"image": "velo.png", "page": "/bicycles" },
-        {"image": "giro.png", "page": "/hoverboards" },
-        {"image": "kol.png", "page": "/monowheels" },
-        {"image": "segways.png", "page": "/segways" }
+    { "page": "", "childrens": [
+      { "page": "transport", "childrens": [
+        {"image": "samokat.png", "page": "scooters" },
+        {"image": "velo.png", "page": "bicycles" },
+        {"image": "giro.png", "page": "hoverboards" },
+        {"image": "kol.png", "page": "monowheels" },
+        {"image": "segways.png", "page": "segways" }
       ] },
-      { "page": "/parts", "childrens": [
-        {"image": "samokat.png", "page": "/parts-for-scooters" },
-        {"image": "velo.png", "page": "/parts-for-bicycles" },
-        {"image": "giro.png", "page": "/parts-for-hoverboards" },
-        {"image": "kol.png", "page": "/parts-for-monowheels" },
-        {"image": "segways.png", "page": "/parts-for-segways" }
+      { "page": "parts", "childrens": [
+        {"image": "samokat.png", "page": "parts-for-scooters" },
+        {"image": "velo.png", "page": "parts-for-bicycles" },
+        {"image": "giro.png", "page": "parts-for-hoverboards" },
+        {"image": "kol.png", "page": "parts-for-monowheels" },
+        {"image": "segways.png", "page": "parts-for-segways" }
       ] },
-      { "page": "/accums", "childrens": [
-        { "page": "/battery-repair" },
-        { "page": "/battery-manufacturing" }
+      { "page": "accums", "childrens": [
+        { "page": "battery-repair" },
+        { "page": "battery-manufacturing" }
       ] },
-      { "page": "/repair", "childrens": [
-        {"image": "samokat.png", "page": "/scooters-repair" },
-        {"image": "velo.png", "page": "/bicycles-repair" },
-        {"image": "giro.png", "page": "/hoverboards-repair" },
-        {"image": "kol.png", "page": "/monowheels-repair" },
-        {"image": "segways.png", "page": "/segways-repairs" },
-        {"image": "gidro.png", "page": "/waterproofing" }
+      { "page": "repair", "childrens": [
+        {"image": "samokat.png", "page": "scooters-repair" },
+        {"image": "velo.png", "page": "bicycles-repair" },
+        {"image": "giro.png", "page": "hoverboards-repair" },
+        {"image": "kol.png", "page": "monowheels-repair" },
+        {"image": "segways.png", "page": "segways-repairs" },
+        {"image": "gidro.png", "page": "waterproofing" }
         ] },
-      { "page": "/contacts" }
+      { "page": "contacts" }
     ] }
   ],
   "pages": [
-    { "path": "/", "name": "main page", "type": "main" },
-    { "path": "/transport", "name": "Электротранспорт", "type": "category" },
-    { "path": "/parts", "name": "Комплектующие", "type": "category" },
-    { "path": "/accums", "name": "Аккумуляторы", "type": "category" },
-    { "path": "/repair", "name": "Ремонт", "type": "category" },
-    { "path": "/contacts", "name": "Контакты", "type": "contacts" },
-    { "path": "/scooters", "name": "Самокаты", "type": "category" },
-    { "path": "/bicycles", "name": "Велосипеды", "type": "category" },
-    { "path": "/hoverboards", "name": "Гироскутеры", "type": "category" },
-    { "path": "/monowheels", "name": "Моноколёса", "type": "category" },
-    { "path": "/segways", "name": "Сигвеи", "type": "category" },
-    { "path": "/parts-for-scooters", "name": "Запчасти для самокатов", "type": "category" },
-    { "path": "/parts-for-bicycles", "name": "Запчасти для велосипедов", "type": "category" },
-    { "path": "/parts-for-hoverboards", "name": "Запчасти для гироскутеров", "type": "category" },
-    { "path": "/parts-for-monowheels", "name": "Запчасти для моноколеса", "type": "category" },
-    { "path": "/parts-for-segways", "name": "Запчасти для сигвеев", "type": "category" },
-    { "path": "/battery-repair", "name": "Ремонт и восстановление аккумуляторов", "type": "category" },
-    { "path": "/battery-manufacturing", "name": "Изготовление аккумуляторов", "type": "category" },
-    { "path": "/scooters-repair", "name": "Ремонт самокатов", "type": "category" },
-    { "path": "/bicycles-repair", "name": "Ремонт велосипедов", "type": "category" },
-    { "path": "/hoverboards-repair", "name": "Ремонт гироскутеров", "type": "category" },
-    { "path": "/monowheels-repair", "name": "Ремонт моноколеса", "type": "category" },
-    { "path": "/segways-repairs", "name": "Ремонт сигвеев", "type": "category" },
-    { "path": "/waterproofing", "name": "Гидроизоляция", "type": "category" }
+    { "path": "", "name": "main page", "type": "main" },
+    { "path": "transport", "name": "Электротранспорт", "type": "category" },
+    { "path": "parts", "name": "Комплектующие", "type": "category" },
+    { "path": "accums", "name": "Аккумуляторы", "type": "category" },
+    { "path": "repair", "name": "Ремонт", "type": "category" },
+    { "path": "contacts", "name": "Контакты", "type": "contacts" },
+
+    { "path": "scooters", "name": "Самокаты", "type": "category" },
+    { "path": "bicycles", "name": "Велосипеды", "type": "category" },
+    { "path": "hoverboards", "name": "Гироскутеры", "type": "category" },
+    { "path": "monowheels", "name": "Моноколёса", "type": "category" },
+    { "path": "segways", "name": "Сигвеи", "type": "category" },
+    { "path": "parts-for-scooters", "name": "Запчасти для самокатов", "type": "category" },
+    { "path": "parts-for-bicycles", "name": "Запчасти для велосипедов", "type": "category" },
+    { "path": "parts-for-hoverboards", "name": "Запчасти для гироскутеров", "type": "category" },
+    { "path": "parts-for-monowheels", "name": "Запчасти для моноколеса", "type": "category" },
+    { "path": "parts-for-segways", "name": "Запчасти для сигвеев", "type": "category" },
+    { "path": "battery-repair", "name": "Ремонт и восстановление аккумуляторов", "type": "category" },
+    { "path": "battery-manufacturing", "name": "Изготовление аккумуляторов", "type": "category" },
+    { "path": "scooters-repair", "name": "Ремонт самокатов", "type": "category" },
+    { "path": "bicycles-repair", "name": "Ремонт велосипедов", "type": "category" },
+    { "path": "hoverboards-repair", "name": "Ремонт гироскутеров", "type": "category" },
+    { "path": "monowheels-repair", "name": "Ремонт моноколеса", "type": "category" },
+    { "path": "segways-repairs", "name": "Ремонт сигвеев", "type": "category" },
+    { "path": "waterproofing", "name": "Гидроизоляция", "type": "category" },
+
+    { "path": "razor-e-prime", "name": "Электрический самокат Razor E Prime", "type": "product" },
+    { "path": "xiaomi-mi-3", "name": "Электрический самокат Xiaomi Mi 3", "type": "product" },
+    { "path": "proove-x-city-pro", "name": "Электрический самокат Proove X-City Pro", "type": "product" },
+    { "path": "roadking-kids-l1", "name": "Электрический самокат Roadking KIDS L1", "type": "product" },
+    { "path": "doc-eco-scooter-3", "name": "Электрический самокат DOC ECO SCOOTER 3", "type": "product" }
+  ],
+  "productImages": [
+    { "product": "razor-e-prime", "images": ["darwin-trotineta-electrica-razor-e-prime-iron-gray-0.webp", "darwin-trotineta-electrica-razor-e-prime-iron-gray-1.webp", "darwin-trotineta-electrica-razor-e-prime-iron-gray-2.webp"] },
+    { "product": "xiaomi-mi-3", "images": ["darwin-trotineta-electrica-xiaomi-mi-3-black-14.webp", "darwin-trotineta-electrica-xiaomi-mi-3-black-015.webp", "darwin-trotineta-electrica-xiaomi-mi-3-black-34.webp", "darwin-trotineta-electrica-xiaomi-mi-3-black-222.webp"] },
+    { "product": "proove-x-city-pro", "images": ["darwin-trotineta-electrica-proove-x-city-pro-black-05.webp", "darwin-trotineta-electrica-proove-x-city-pro-black-131.webp", "darwin-trotineta-electrica-proove-x-city-pro-black-284.webp", "darwin-trotineta-electrica-proove-x-city-pro-black-391.webp", "darwin-trotineta-electrica-proove-x-city-pro-black-450.webp" ] },
+    { "product": "roadking-kids-l1", "images": ["darwin-trotineta-electrica-roadking-kids-l1-black-023.webp", "darwin-trotineta-electrica-roadking-kids-l1-black-197.webp"] },
+    { "product": "doc-eco-scooter-3", "images": ["darwin-trotineta-electrica-nilox-doc-eco-scooter-3-gray-095.webp", "darwin-trotineta-electrica-nilox-doc-eco-scooter-3-gray-120.webp", "darwin-trotineta-electrica-nilox-doc-eco-scooter-3-gray-213.webp", "darwin-trotineta-electrica-nilox-doc-eco-scooter-3-gray-341.webp"] }
+  ],
+  "category": [
+    { "name": "scooters", "items": ["razor-e-prime", "xiaomi-mi-3", "proove-x-city-pro", "roadking-kids-l1", "doc-eco-scooter-3"] }
   ]
 }

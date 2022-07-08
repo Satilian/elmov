@@ -6,7 +6,8 @@ import { useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { backStorage } from "./backStorage";
+import { deepMerge } from "util/deepMerge";
+import { backStorage } from "../util/backStorage";
 
 const isDev = process.env.NODE_ENV !== "production";
 const isServer = typeof window === undefined;
@@ -14,6 +15,8 @@ const isServer = typeof window === undefined;
 const persistConfig = {
   key: "root",
   storage: isServer ? backStorage : storage,
+  stateReconciler: (inboundState: any, originalState: any) =>
+    deepMerge(inboundState, originalState),
 };
 
 const rootReducer = combineReducers({

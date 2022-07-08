@@ -1,5 +1,13 @@
+import { ProductImage } from 'entities/productImage.entity';
 import { Page } from 'entities/page.entity';
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Category } from './category.entity';
 
 @Entity()
@@ -15,6 +23,6 @@ export class Product {
   @JoinColumn()
   category: Category;
 
-  @Column()
-  images: string[];
+  @OneToMany(() => ProductImage, (image) => image.product)
+  images: ProductImage[];
 }

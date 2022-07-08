@@ -3,6 +3,7 @@ import { getCategoryTree } from "modules/category/categoryState";
 import App, { AppContext } from "next/app";
 import React from "react";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 import { configureStore, useStore } from "store";
 import "styles/style.scss";
 
@@ -12,14 +13,20 @@ type Props = {
 };
 
 export default function _App({ Component, pageProps: { initialState, ...pageProps } }: Props) {
-  const store = useStore(initialState);
+  const { store, persistor } = useStore(initialState);
   const getLayout = Component.getLayout || ((page: JSX.Element) => page);
 
-  return <Provider store={store}>{getLayout(<Component {...pageProps} />)}</Provider>;
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        {getLayout(<Component {...pageProps} />)}
+      </PersistGate>
+    </Provider>
+  );
 }
 
 _App.getInitialProps = async (appContext: AppContext) => {
-  const store = configureStore();
+  const { store } = configureStore();
   await store.dispatch(getCategoryTree());
   const props = await App.getInitialProps(appContext);
 

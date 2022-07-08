@@ -8,8 +8,6 @@ export class CategoryService {
 
   getCategories = async () =>
     (
-      await this.dbProvider.manager
-        .getTreeRepository(Category)
-        .findTrees({ relations: ['page', 'image'] })
+      await this.dbProvider.manager.getTreeRepository(Category).findTrees({ relations: ['page'] })
     )[0].childrens;
 }

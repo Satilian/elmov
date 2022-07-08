@@ -18,7 +18,7 @@ export class Category {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ nullable: true })
   image: string;
 
   @OneToOne(() => Page)

@@ -1,5 +1,6 @@
 import { categoriesTree, category, pages, pageTypes, productImages } from 'constants/data.json';
 import { Category } from 'entities/category.entity';
+import { ProductImage } from 'entities/productImage.entity';
 import { Page } from 'entities/page.entity';
 import { PageType } from 'entities/pageType.entity';
 import { Product } from 'entities/product.entity';
@@ -38,25 +39,30 @@ export const seedingData = async (dataSource: DataSource) => {
 
   await createCategory(categoriesTree);
 
-  const productImagesMap = {};
-  await Promise.all(
-    productImages.map(async ({ product, images }) => {
-      productImagesMap[product] = images;
-    }),
-  );
-
+  const productsMap = {};
   await Promise.all(
     category.map(async ({ name, items }) => {
       await Promise.all(
         items.map((path) => {
           const product = dataSource.manager.create(Product, {
             page: pagesMap[path],
-            images: productImagesMap[path],
             category: categoryMap[name],
           });
-          return dataSource.manager.save(product);
+          return dataSource.manager.save(product).then((prod) => (productsMap[path] = prod.id));
         }),
       );
+    }),
+  );
+
+  await Promise.all(
+    productImages.map(async ({ product, images }) => {
+      images.map((src) => {
+        const image = dataSource.manager.create(ProductImage, {
+          product: productsMap[product],
+          src,
+        });
+        dataSource.manager.save(image);
+      });
     }),
   );
 };

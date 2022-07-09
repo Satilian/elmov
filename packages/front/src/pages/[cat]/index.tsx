@@ -12,9 +12,10 @@ Category.getLayout = getLayout;
 
 export default Category;
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params, ...rest }) => {
   if (!params?.cat) return { props: {} };
-  const store = configureStore();
+  console.log(Object.keys(rest));
+  const { store } = configureStore();
   await store.dispatch(getProductsByCategory(String(params.cat)));
   return {
     props: { initialState: store.getState() },

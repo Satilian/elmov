@@ -4,7 +4,7 @@ import App, { AppContext } from "next/app";
 import React from "react";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import { configureStore, useStore } from "store";
+import { configureStore } from "store";
 import "styles/style.scss";
 
 type Props = {
@@ -13,8 +13,9 @@ type Props = {
 };
 
 export default function _App({ Component, pageProps: { initialState, ...pageProps } }: Props) {
-  const { store, persistor } = useStore(initialState);
+  const { store, persistor } = configureStore(initialState);
   const getLayout = Component.getLayout || ((page: JSX.Element) => page);
+  console.log("isServer", typeof window === undefined);
 
   return (
     <Provider store={store}>
@@ -27,8 +28,10 @@ export default function _App({ Component, pageProps: { initialState, ...pageProp
 
 _App.getInitialProps = async (appContext: AppContext) => {
   const { store } = configureStore();
-  await store.dispatch(getCategoryTree());
+
   const props = await App.getInitialProps(appContext);
+
+  await store.dispatch(getCategoryTree());
 
   return {
     ...props,

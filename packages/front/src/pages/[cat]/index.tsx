@@ -1,23 +1,18 @@
 import { getLayout } from "components/Layout";
-import { PageType } from "interfaces/page";
-import { CategoryPage } from "modules/category/Category";
+import { Category } from "modules/category/Category";
 import { getProductsByCategory } from "modules/product/productState";
 import { GetServerSideProps } from "next";
 import React from "react";
-import { configureStore } from "store";
+import { store } from "store";
 
-const Category: PageType = () => <CategoryPage />;
+export default function CategoryPage() {
+  return <Category />;
+}
 
-Category.getLayout = getLayout;
+CategoryPage.getLayout = getLayout;
 
-export default Category;
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  params?.cat && (await store.dispatch(getProductsByCategory(String(params.cat))));
 
-export const getServerSideProps: GetServerSideProps = async ({ params, ...rest }) => {
-  if (!params?.cat) return { props: {} };
-  console.log(Object.keys(rest));
-  const { store } = configureStore();
-  await store.dispatch(getProductsByCategory(String(params.cat)));
-  return {
-    props: { initialState: store.getState() },
-  };
+  return { props: { keys: ["product"] } };
 };

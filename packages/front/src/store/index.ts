@@ -1,4 +1,5 @@
 import { configureStore as createStore } from "@reduxjs/toolkit";
+import { isDev, isServer } from "consts/common";
 import { categoryReducer } from "modules/category/categoryState";
 import { productReducer } from "modules/product/productState";
 import { uiReducer } from "modules/ui/uiState";
@@ -8,14 +9,11 @@ import storage from "redux-persist/lib/storage";
 import { deepMerge } from "util/deepMerge";
 import { backStorage } from "../util/backStorage";
 
-const isDev = process.env.NODE_ENV !== "production";
-const isServer = typeof window === undefined;
-
 const reducer = persistCombineReducers(
   {
     key: "root",
     debug: isDev,
-    storage: isServer ? backStorage : storage,
+    storage: isServer() ? backStorage : storage,
     stateReconciler: (inboundState: any, originalState: any) =>
       deepMerge(inboundState, originalState),
   },
@@ -27,7 +25,6 @@ const reducer = persistCombineReducers(
 );
 
 const getNewStore = (preloadedState?: AppState) => {
-  console.log("getNewStore");
   return createStore({
     preloadedState,
     reducer,
@@ -47,14 +44,12 @@ const getPersistor = (store: AppStore) => persistStore(store);
 
 export type Persitor = ReturnType<typeof getPersistor>;
 
-let store: AppStore;
+export let store: AppStore;
 let persistor: Persitor;
 
 export const configureStore = (preloadedState?: AppState) => {
-  if (!store) {
-    store = getNewStore(preloadedState);
-    persistor = getPersistor(store);
-  }
+  (isServer() || !store) && (store = getNewStore(preloadedState));
+  !isServer() && !persistor && (persistor = getPersistor(store));
 
   return { store, persistor };
 };

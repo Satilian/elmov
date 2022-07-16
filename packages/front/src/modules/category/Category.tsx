@@ -2,7 +2,7 @@ import styled from "astroturf/react";
 import { useRouter } from "next/router";
 import React from "react";
 
-export const CategoryPage = () => {
+export const Category = () => {
   const { asPath } = useRouter();
 
   return (

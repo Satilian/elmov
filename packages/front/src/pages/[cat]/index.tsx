@@ -4,6 +4,7 @@ import { getProductsByCategory } from "modules/product/productState";
 import { GetServerSideProps } from "next";
 import React from "react";
 import { store } from "store";
+import { getPartialState } from "util/getPartialState";
 
 export default function CategoryPage() {
   return <Category />;
@@ -12,7 +13,7 @@ export default function CategoryPage() {
 CategoryPage.getLayout = getLayout;
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  params?.cat && (await store.dispatch(getProductsByCategory(String(params.cat))));
+  await store.dispatch(getProductsByCategory(String(params?.cat)));
 
-  return { props: { keys: ["product"] } };
+  return { props: { state: getPartialState(store.getState(), { keys: ["product"] }) } };
 };

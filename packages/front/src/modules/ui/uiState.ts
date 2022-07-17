@@ -1,7 +1,7 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { AppState } from "store";
 
-export interface IUiState {
+export interface UiState {
   menu: {
     subMenu: string;
     isOpen: boolean;
@@ -16,7 +16,7 @@ export const initialState = {
 };
 
 export const { actions, reducer: uiReducer } = createSlice({
-  name: "category",
+  name: "ui",
   initialState,
   reducers: {
     toggle: (state) => ({ ...state, menu: { ...state.menu, isOpen: !state.menu.isOpen } }),

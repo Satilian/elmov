@@ -1,10 +1,12 @@
 {
   "name": "root",
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "bootstrap": "yarn && lerna bootstrap",
-    "start": "yarn bootstrap && lerna run start",
-    "prod": "yarn bootstrap && lerna run prod",
+    "start": "yarn && lerna run start",
+    "prod": "yarn && lerna run prod",
     "nx": "nx",
     "graph": "nx graph"
   },

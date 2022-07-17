@@ -1,6 +1,6 @@
 import styled from "astroturf/react";
 import { CrossIcon } from "icons/CrossIcon";
-import { CategoryDto } from "interfaces/page";
+import { CategoryDto } from "interfaces/category";
 import * as ui from "modules/ui/uiState";
 import { useRouter } from "next/router";
 import React, { Fragment } from "react";
@@ -33,7 +33,7 @@ export const Menu = ({ items, topLevel }: IProps) => {
             delay={i * 100}
             subCategory={childrens}
             isOpen={isOpen && subMenu === page.path}
-            imgUrl={image?.src}
+            imgUrl={image}
             {...page}
           />
 

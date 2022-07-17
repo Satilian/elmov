@@ -1,6 +1,7 @@
 import { ProductImage } from 'entities/productImage.entity';
 import { Page } from 'entities/page.entity';
 import {
+  Column,
   Entity,
   JoinColumn,
   ManyToOne,
@@ -14,6 +15,12 @@ import { Category } from './category.entity';
 export class Product {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @Column()
+  name: string;
+
+  @Column()
+  price: number;
 
   @OneToOne(() => Page)
   @JoinColumn()

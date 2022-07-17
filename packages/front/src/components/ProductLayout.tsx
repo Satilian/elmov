@@ -1,4 +1,5 @@
 import styled from "astroturf/react";
+import { PageProps } from "interfaces/page";
 import { ProductPage } from "modules/product/Product";
 import React, { ReactNode } from "react";
 import { Layout } from "./Layout";
@@ -14,8 +15,8 @@ export const ProductLayout = ({ children }: Props) => (
   </Container>
 );
 
-export const getProductLayout = (page: JSX.Element) => (
-  <Layout>
+export const getProductLayout = (page: JSX.Element, props: PageProps) => (
+  <Layout {...props}>
     <ProductLayout>{page}</ProductLayout>
   </Layout>
 );

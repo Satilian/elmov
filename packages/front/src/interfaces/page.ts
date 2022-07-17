@@ -6,18 +6,18 @@ export type PageType = NextPage<PageProps> & {
 };
 
 export type PageProps = {
-  initialState: Partial<AppState>;
+  state: Partial<AppState>;
   [key: string]: unknown;
 };
 
-export type CategoryDto = {
+export type PageTypeDto = {
   id: string;
-  page: {
-    name: string;
-    path: string;
-  };
-  image?: {
-    src: string;
-  };
-  childrens: CategoryDto[];
+  name: string;
+};
+
+export type PageDto = {
+  id: string;
+  path: string;
+  name: string;
+  type: PageTypeDto;
 };

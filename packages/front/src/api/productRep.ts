@@ -1,4 +1,4 @@
-import { CategoryDto } from "interfaces/page";
+import { PageDto } from "interfaces/page";
 import { BaseRequest } from "./BaseRequest";
 
 export class ProductRep extends BaseRequest {
@@ -6,8 +6,11 @@ export class ProductRep extends BaseRequest {
     super(process.env.API_URL);
   }
 
-  fetchByCategory = (path: CategoryDto["page"]["path"]) =>
-    this.get(`product/getByPage?path=${path}`);
+  fetchByCategory = async (path: PageDto["path"]) => {
+    const res = await this.get(`product/getByPage?path=${path}`);
+    console.log(res);
+    return res;
+  };
 }
 
 export const productRep = new ProductRep();

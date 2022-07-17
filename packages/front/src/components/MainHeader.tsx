@@ -5,7 +5,7 @@ import { ContactsIcon } from "../icons/ContactsIcon";
 import { SearchIcon } from "../icons/SearchIcon";
 import { ShoppingIcon } from "../icons/ShoppingIcon";
 
-export const Header = () => (
+export const MainHeader = () => (
   <Container>
     <Link href="/" passHref>
       <Name>Название</Name>
@@ -28,12 +28,13 @@ const Container = styled.div`
   align-items: baseline;
 `;
 
-const Name = styled.span`
+const Name = styled.a`
   @import "variables";
   font-weight: 700;
   font-size: 32px;
   color: $white;
   line-height: 57px;
+  text-decoration: none;
 `;
 
 const Desc = styled.span`

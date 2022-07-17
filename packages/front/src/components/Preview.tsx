@@ -1,25 +1,30 @@
 import styled from "astroturf/react";
 import { imagePath } from "consts/common";
 import { Button } from "elements/Button";
+import { ProductDto } from "interfaces/product";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 
-interface IProps {
-  id: string;
-}
+type Props = {
+  product: ProductDto;
+};
 
-export const Preview = ({ id }: IProps) => {
-  const { image, name, price } = {} as any;
+export const Preview = ({ product }: Props) => {
+  const { images, name, price } = product;
   const { asPath } = useRouter();
 
   return (
-    <Link href={`${asPath}/${id}`} passHref>
+    <Link href={`${asPath}/${product.page.path}`} passHref>
       <Container>
         <ImgContainer>
           <ImageWrapper>
-            <Image src={imagePath + image} alt="image" layout="fill" />
+            <Image
+              src={`${imagePath}${product.page.path}/${images[0]?.src}`}
+              alt="image"
+              layout="fill"
+            />
           </ImageWrapper>
 
           <Btn side="left" size="small">

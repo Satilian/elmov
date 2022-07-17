@@ -1,5 +1,5 @@
 export class BaseRequest {
-  constructor(private readonly baseUrl = "/api/") {
+  constructor(private readonly baseuri = "/api/") {
     this.headers.set("Accept", "application/json");
     this.headers.set("Content-type", "application/json");
   }
@@ -7,13 +7,16 @@ export class BaseRequest {
   public headers: Headers = new Headers();
 
   private handleError = (error: unknown) => {
-    console.log(error);
+    console.log(`\x1b[32m ${error} \x1b[0m`);
     throw error;
   };
 
-  private fetch = async (url: string, config?: Record<string, unknown>) => {
+  private fetch = async (uri: string, config?: Record<string, unknown>) => {
+    const url = this.baseuri + uri;
+    console.log(`\x1b[32m ${url} \x1b[0m`);
+
     try {
-      const res = await fetch(this.baseUrl + url, { headers: this.headers, ...config });
+      const res = await fetch(url, { headers: this.headers, ...config });
       if (!res.status || res.status < 200 || res.status >= 300) throw res;
       return res.json();
     } catch (e) {
@@ -21,14 +24,14 @@ export class BaseRequest {
     }
   };
 
-  protected get = async (url: string, config?: Record<string, unknown>) => this.fetch(url, config);
+  protected get = async (uri: string, config?: Record<string, unknown>) => this.fetch(uri, config);
 
-  protected post = async <R>(url: string, body: R, config?: Record<string, unknown>) =>
-    this.fetch(url, { method: "POST", body: JSON.stringify(body), ...config });
+  protected post = async <R>(uri: string, body: R, config?: Record<string, unknown>) =>
+    this.fetch(uri, { method: "POST", body: JSON.stringify(body), ...config });
 
-  protected put = async <R>(url: string, body: R, config?: Record<string, unknown>) =>
-    this.fetch(url, { method: "PUT", body: JSON.stringify(body), ...config });
+  protected put = async <R>(uri: string, body: R, config?: Record<string, unknown>) =>
+    this.fetch(uri, { method: "PUT", body: JSON.stringify(body), ...config });
 
-  protected delete = async (url: string, config?: Record<string, unknown>) =>
-    this.fetch(url, { method: "DELETE", ...config });
+  protected delete = async (uri: string, config?: Record<string, unknown>) =>
+    this.fetch(uri, { method: "DELETE", ...config });
 }

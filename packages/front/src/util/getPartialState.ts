@@ -1,7 +1,12 @@
 import { AppState } from "store";
 
-export const getPartialState = (keys: string[], state: AppState) =>
-  keys.reduce((partial: Partial<AppState>, key) => {
+type Options = {
+  keys: string[];
+  defaultKeys?: string[];
+};
+
+export const getPartialState = (state: AppState, { keys, defaultKeys = ["category"] }: Options) =>
+  [...defaultKeys, ...keys].reduce((partial: Partial<AppState>, key) => {
     partial[key] = state[key];
     return partial;
   }, {});

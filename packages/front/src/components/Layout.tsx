@@ -1,14 +1,15 @@
 import styled from "astroturf/react";
 import { MenuSpacer } from "elements/MenuSpacer";
+import { PageProps } from "interfaces/page";
 import { categoriesSelectors } from "modules/category/categoryState";
 import { useRouter } from "next/router";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { useSelector } from "react-redux";
 import { Footer } from "../components/Footer";
-import { Header } from "../components/Header";
 import { Menu } from "../modules/ui/components/Menu/Menu";
+import { MainHeader } from "./MainHeader";
 
-type Props = {
+type Props = PageProps & {
   children?: ReactNode;
 };
 
@@ -21,7 +22,7 @@ export const Layout = ({ children }: Props) => {
       <Menu items={menuItems} topLevel />
 
       <Container>
-        <HeaderWrapper>{pathname !== "/" && <Header />}</HeaderWrapper>
+        <HeaderWrapper>{pathname !== "/" && <MainHeader />}</HeaderWrapper>
 
         <Content>
           <MenuSpacer />
@@ -35,7 +36,9 @@ export const Layout = ({ children }: Props) => {
   );
 };
 
-export const getLayout = (page: JSX.Element) => <Layout>{page}</Layout>;
+export const getLayout = (page: JSX.Element, props: PageProps) => (
+  <Layout {...props}>{page}</Layout>
+);
 
 const Container = styled.div`
   display: grid;

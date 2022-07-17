@@ -14,6 +14,7 @@ const reducer = persistCombineReducers(
     key: "root",
     debug: isDev,
     storage: isServer() ? backStorage : storage,
+    whitelist: isServer() ? [] : undefined,
     stateReconciler: (inboundState: any, originalState: any) =>
       deepMerge(inboundState, originalState),
   },

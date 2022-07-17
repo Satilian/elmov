@@ -1,5 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
-import { Page } from 'entities/page.entity';
+import { Controller, Get, Query } from '@nestjs/common';
 import { ProductService } from './product.service';
 
 @Controller('product')
@@ -7,7 +6,7 @@ export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @Get('getByPage')
-  async getByPage(path: Page['path']) {
-    return await this.productService.getByPage(path);
+  async getByPage(@Query() query) {
+    return await this.productService.getByCategoryPath(query.path);
   }
 }

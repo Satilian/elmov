@@ -13,6 +13,6 @@ export const dbProvider = {
       entities: ['dist/**/*.entity{.ts,.js}'],
       migrations: ['dist/migrations/*{.ts,.js}'],
       synchronize: true,
-      logging: true,
+      logging: false,
     }).initialize(),
 };

@@ -1,6 +1,6 @@
 import styled from "astroturf/react";
 import { NextImage } from "components/NextImage";
-import { CategoryDto } from "interfaces/page";
+import { CategoryDto } from "interfaces/category";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { SyntheticEvent, useEffect, useState } from "react";
@@ -44,10 +44,8 @@ export const MenuItem = ({
     };
   }, []);
 
-  const href = `/${path === "contacts" ? path : "[cat]"}`;
-
   return (
-    <Link href={href} as={path} passHref>
+    <Link href={`/${path}`} passHref>
       <A
         main={asPath === "/"}
         topLevel={topLevel}
@@ -94,9 +92,11 @@ const A = styled(Anchor)<StyledAnchorType>`
   left: -25vw;
   text-decoration: none;
   color: $black;
+
   &.main.topLevel {
     background: $green_t;
   }
+
   &.topLevel {
     justify-content: center;
     align-items: center;
@@ -104,19 +104,24 @@ const A = styled(Anchor)<StyledAnchorType>`
     color: $white;
     left: 0;
   }
+
   &.inPlace {
     left: 0;
   }
+
   &.active {
     @include menuItemUp;
   }
+
   &.topLevel.isOpen,
   &.topLevel.active {
     z-index: 0;
   }
+
   &:hover {
     @include menuItemUp;
   }
+
   &.topLevel:hover {
     background: $green;
   }

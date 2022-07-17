@@ -7,9 +7,9 @@ import { DataSource } from 'typeorm';
 export class ProductService {
   constructor(@Inject('DATA_SOURCE') private dbProvider: DataSource) {}
 
-  getByPage = (path: Page['path']) =>
+  getByCategoryPath = (path: Page['path']) =>
     this.dbProvider.getRepository(Product).find({
-      relations: ['page', 'category', 'images'],
-      where: { page: { path } },
+      relations: ['page', 'category', 'category.page', 'images'],
+      where: { category: { page: { path } } },
     });
 }

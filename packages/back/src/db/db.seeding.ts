@@ -1,4 +1,4 @@
-import { categoriesTree, category, pages, pageTypes, productImages } from 'constants/data.json';
+import { categoriesTree, products, pages, pageTypes, productImages } from 'constants/data.json';
 import { Category } from 'entities/category.entity';
 import { ProductImage } from 'entities/productImage.entity';
 import { Page } from 'entities/page.entity';
@@ -41,10 +41,11 @@ export const seedingData = async (dataSource: DataSource) => {
 
   const productsMap = {};
   await Promise.all(
-    category.map(async ({ name, items }) => {
+    products.map(async ({ name, items }) => {
       await Promise.all(
-        items.map((path) => {
+        items.map(({path, price}) => {
           const product = dataSource.manager.create(Product, {
+            price,
             page: pagesMap[path],
             category: categoryMap[name],
           });

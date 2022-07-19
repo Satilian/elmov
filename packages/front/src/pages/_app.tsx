@@ -27,6 +27,15 @@ export default function _App({ Component, pageProps }: Props) {
 _App.getInitialProps = async (appContext: AppContext) => {
   const { store } = configureStore();
   await store.dispatch(getCategoryTree());
+  const { pageProps } = await App.getInitialProps(appContext);
 
-  return App.getInitialProps(appContext);
+  return {
+    pageProps: {
+      ...pageProps,
+      state: {
+        category: store.getState().category,
+        ...pageProps.state,
+      },
+    },
+  };
 };

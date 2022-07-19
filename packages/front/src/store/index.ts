@@ -15,8 +15,12 @@ const reducer = persistCombineReducers(
     debug: isDev,
     storage: isServer() ? backStorage : storage,
     whitelist: isServer() ? [] : undefined,
-    stateReconciler: (inboundState: any, originalState: any) =>
-      deepMerge(inboundState, originalState),
+    stateReconciler: isServer()
+      ? undefined
+      : (inboundState: any, originalState: any) => {
+          console.log(inboundState, originalState);
+          return deepMerge(inboundState, originalState);
+        },
   },
   {
     ui: uiReducer,
@@ -50,7 +54,7 @@ let persistor: Persitor;
 
 export const configureStore = (preloadedState?: AppState) => {
   (isServer() || !store) && (store = getNewStore(preloadedState));
-  !isServer() && !persistor && (persistor = getPersistor(store));
+  !persistor && (persistor = getPersistor(store));
 
   return { store, persistor };
 };

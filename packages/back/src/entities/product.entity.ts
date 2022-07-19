@@ -17,9 +17,6 @@ export class Product {
   id: string;
 
   @Column()
-  name: string;
-
-  @Column()
   price: number;
 
   @OneToOne(() => Page)

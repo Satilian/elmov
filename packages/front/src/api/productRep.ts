@@ -6,11 +6,7 @@ export class ProductRep extends BaseRequest {
     super(process.env.API_URL);
   }
 
-  fetchByCategory = async (path: PageDto["path"]) => {
-    const res = await this.get(`product/getByPage?path=${path}`);
-    console.log(res);
-    return res;
-  };
+  fetchByCategory = (path: PageDto["path"]) => this.get(`product/getByPage?path=${path}`);
 }
 
 export const productRep = new ProductRep();

@@ -72,7 +72,13 @@
     { "product": "roadking-kids-l1", "images": ["darwin-trotineta-electrica-roadking-kids-l1-black-023.webp", "darwin-trotineta-electrica-roadking-kids-l1-black-197.webp"] },
     { "product": "doc-eco-scooter-3", "images": ["darwin-trotineta-electrica-nilox-doc-eco-scooter-3-gray-095.webp", "darwin-trotineta-electrica-nilox-doc-eco-scooter-3-gray-120.webp", "darwin-trotineta-electrica-nilox-doc-eco-scooter-3-gray-213.webp", "darwin-trotineta-electrica-nilox-doc-eco-scooter-3-gray-341.webp"] }
   ],
-  "category": [
-    { "name": "scooters", "items": ["razor-e-prime", "xiaomi-mi-3", "proove-x-city-pro", "roadking-kids-l1", "doc-eco-scooter-3"] }
+  "products": [
+    { "name": "scooters", "items": [
+      {"path": "razor-e-prime", "price": 10300 },
+      {"path": "xiaomi-mi-3", "price": 22500},
+      {"path": "proove-x-city-pro", "price": 15999},
+      {"path":"roadking-kids-l1", "price": 30000},
+      {"path": "doc-eco-scooter-3", "price": 48999}
+    ]}
   ]
 }

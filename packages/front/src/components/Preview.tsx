@@ -12,7 +12,7 @@ type Props = {
 };
 
 export const Preview = ({ product }: Props) => {
-  const { images, name, price } = product;
+  const { images, page, price } = product;
   const { asPath } = useRouter();
 
   return (
@@ -36,7 +36,7 @@ export const Preview = ({ product }: Props) => {
           </Btn>
         </ImgContainer>
 
-        <Name>{name}</Name>
+        <Name>{page.name}</Name>
 
         <Name>
           <b>{price}</b>&nbsp; руб.

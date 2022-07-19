@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit";
 import { categoryRep } from "api/categoryRep";
-import { CategoryDto } from "interfaces/page";
+import { CategoryDto } from "interfaces/category";
 import { ThunkApiType } from "interfaces/store";
 import { AppState } from "store";
 

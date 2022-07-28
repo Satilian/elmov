@@ -12,8 +12,8 @@ export default function CategoryPage() {
 
 CategoryPage.getLayout = getLayout;
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({ req, params }) => {
   await store.dispatch(getProductsByCategory(String(params?.cat)));
 
-  return { props: { state: getPartialState(store.getState(), { keys: ["product"] }) } };
+  return { props: { state: await getPartialState({ req, keys: ["product"] }) } };
 };

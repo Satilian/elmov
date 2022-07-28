@@ -1,5 +1,5 @@
 import styled from "astroturf/react";
-import { PageProps } from "interfaces/page";
+import { PageProps } from "interfaces/common";
 import { ProductPage } from "modules/product/Product";
 import React, { ReactNode } from "react";
 import { Layout } from "./Layout";

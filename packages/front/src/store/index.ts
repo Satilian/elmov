@@ -1,36 +1,36 @@
-import { configureStore as createStore } from "@reduxjs/toolkit";
-import { isDev, isServer } from "consts/common";
+import {
+  AnyAction,
+  combineReducers,
+  configureStore as createStore,
+  createAction,
+} from "@reduxjs/toolkit";
+import { isDev } from "consts/common";
 import { categoryReducer } from "modules/category/categoryState";
 import { productReducer } from "modules/product/productState";
 import { uiReducer } from "modules/ui/uiState";
+import { useMemo } from "react";
 import { useDispatch } from "react-redux";
-import { persistCombineReducers, persistStore } from "redux-persist";
-import storage from "redux-persist/lib/storage";
 import { deepMerge } from "util/deepMerge";
-import { backStorage } from "../util/backStorage";
 
-const reducer = persistCombineReducers(
-  {
-    key: "root",
-    debug: isDev,
-    storage: isServer() ? backStorage : storage,
-    whitelist: isServer() ? [] : undefined,
-    stateReconciler: isServer()
-      ? undefined
-      : (inboundState: any, originalState: any) => {
-          console.log(inboundState, originalState);
-          return deepMerge(inboundState, originalState);
-        },
-  },
-  {
-    ui: uiReducer,
-    category: categoryReducer,
-    product: productReducer,
+const reducers = {
+  ui: uiReducer,
+  category: categoryReducer,
+  product: productReducer,
+};
+
+const combinedReducer = combineReducers(reducers);
+
+export const hydrate = createAction<AppState>("HYDRATE");
+
+const reducer = (state = {} as AppState, action: AnyAction) => {
+  if (action.type === hydrate.toString()) {
+    return deepMerge<AppState>(state, action.payload);
   }
-);
+  return combinedReducer(state, action);
+};
 
-const getNewStore = (preloadedState?: AppState) => {
-  return createStore({
+const getNewStore = (preloadedState?: AppState) =>
+  createStore({
     preloadedState,
     reducer,
     middleware: (getDefaultMiddleware) =>
@@ -39,24 +39,19 @@ const getNewStore = (preloadedState?: AppState) => {
       }),
     devTools: isDev,
   });
-};
 
-export type AppState = ReturnType<typeof reducer>;
+export type AppState = {
+  [Key in keyof typeof reducers]: ReturnType<typeof reducers[Key]>;
+};
 export type AppStore = ReturnType<typeof getNewStore>;
 export type AppDispatch = AppStore["dispatch"];
 
-const getPersistor = (store: AppStore) => persistStore(store);
-
-export type Persitor = ReturnType<typeof getPersistor>;
-
 export let store: AppStore;
-let persistor: Persitor;
 
-export const configureStore = (preloadedState?: AppState) => {
-  (isServer() || !store) && (store = getNewStore(preloadedState));
-  !persistor && (persistor = getPersistor(store));
+export const configureStore = (preloadedState?: AppState) =>
+  store || (store = getNewStore(preloadedState));
 
-  return { store, persistor };
-};
+export const useStore = (preloadedState?: AppState) =>
+  useMemo(() => configureStore(preloadedState), []);
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();

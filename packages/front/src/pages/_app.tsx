@@ -1,9 +1,8 @@
-import { PageProps, PageType } from "interfaces/page";
-import { getCategoryTree } from "modules/category/categoryState";
+import { useSkipFirstEffect } from "hooks/useSkipFirstEffect";
+import { PageProps, PageType } from "interfaces/common";
 import App, { AppContext } from "next/app";
 import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
-import { configureStore } from "store";
+import { configureStore, hydrate, useStore } from "store";
 import "styles/style.scss";
 
 type Props = {
@@ -12,30 +11,18 @@ type Props = {
 };
 
 export default function _App({ Component, pageProps }: Props) {
-  const { store, persistor } = configureStore(pageProps.state);
   const getLayout = Component.getLayout || ((page: JSX.Element) => page);
+  const store = useStore(pageProps.state);
 
-  return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        {getLayout(<Component {...pageProps} />, pageProps)}
-      </PersistGate>
-    </Provider>
-  );
+  useSkipFirstEffect(() => {
+    store.dispatch(hydrate(pageProps.state));
+  }, [pageProps.state]);
+
+  return <Provider store={store}>{getLayout(<Component {...pageProps} />, pageProps)}</Provider>;
 }
 
 _App.getInitialProps = async (appContext: AppContext) => {
-  const { store } = configureStore();
-  await store.dispatch(getCategoryTree());
-  const { pageProps } = await App.getInitialProps(appContext);
+  configureStore();
 
-  return {
-    pageProps: {
-      ...pageProps,
-      state: {
-        category: store.getState().category,
-        ...pageProps.state,
-      },
-    },
-  };
+  return await App.getInitialProps(appContext);
 };

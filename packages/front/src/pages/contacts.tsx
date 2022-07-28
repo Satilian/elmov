@@ -1,10 +1,11 @@
 import { getLayout } from "components/Layout";
-import { PageType } from "interfaces/page";
+import * as ui from "modules/ui/uiState";
+import { GetServerSideProps } from "next";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import * as ui from "modules/ui/uiState";
+import { getPartialState } from "util/getPartialState";
 
-const Contacts: PageType = () => {
+export default function Contacts() {
   const menuIsOpen = useSelector(ui.selectors.menuIsOpen);
   const dispatch = useDispatch();
 
@@ -13,8 +14,10 @@ const Contacts: PageType = () => {
   }, []);
 
   return <h1>Contacts page</h1>;
-};
+}
 
 Contacts.getLayout = getLayout;
 
-export default Contacts;
+export const getServerSideProps: GetServerSideProps = async ({ req }) => ({
+  props: { state: await getPartialState({ req }) },
+});

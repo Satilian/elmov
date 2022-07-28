@@ -1,5 +1,5 @@
 import { getProductLayout } from "components/ProductLayout";
-import { PageType } from "interfaces/page";
+import { PageType } from "interfaces/common";
 import React from "react";
 
 const Review: PageType = () => {

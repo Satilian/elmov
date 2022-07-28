@@ -1,6 +1,6 @@
 import styled from "astroturf/react";
 import { MenuSpacer } from "elements/MenuSpacer";
-import { PageProps } from "interfaces/page";
+import { PageProps } from "interfaces/common";
 import { categoriesSelectors } from "modules/category/categoryState";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";

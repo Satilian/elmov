@@ -7,11 +7,12 @@ import { AppState } from "store";
 
 export interface ProductState {
   isLoading: boolean;
-  products?: ProductDto[];
+  products: ProductDto[];
 }
 
 export const initialState: ProductState = {
   isLoading: false,
+  products: [],
 };
 
 export const getProductsByCategory = createAsyncThunk<ProductDto[], PageDto["path"], ThunkApiType>(

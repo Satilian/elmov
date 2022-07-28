@@ -1,5 +1,5 @@
 import { getLayout } from "components/Layout";
-import { PageType } from "interfaces/page";
+import { PageType } from "interfaces/common";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { productRouts } from "routs/productRouts";

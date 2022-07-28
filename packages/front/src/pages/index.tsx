@@ -1,10 +1,12 @@
 import { getLayout } from "components/Layout";
 import { Main } from "components/Main";
 import * as ui from "modules/ui/uiState";
+import { GetServerSideProps } from "next";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getPartialState } from "util/getPartialState";
 
-const Home = () => {
+export default function HomePage() {
   const menuIsOpen = useSelector(ui.selectors.menuIsOpen);
   const dispatch = useDispatch();
 
@@ -13,8 +15,12 @@ const Home = () => {
   }, []);
 
   return <Main />;
+}
+
+HomePage.getLayout = getLayout;
+
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  return {
+    props: { state: await getPartialState({ req }) },
+  };
 };
-
-Home.getLayout = getLayout;
-
-export default Home;

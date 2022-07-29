@@ -2,10 +2,10 @@ import styled from "astroturf/react";
 import { imagePath } from "consts/common";
 import { Button } from "elements/Button";
 import { ProductDto } from "interfaces/product";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
+import { NextImage } from "./NextImage";
 
 type Props = {
   product: ProductDto;
@@ -19,13 +19,7 @@ export const Preview = ({ product }: Props) => {
     <Link href={`${asPath}/${product.page.path}`} passHref>
       <Container>
         <ImgContainer>
-          <ImageWrapper>
-            <Image
-              src={`${imagePath}${product.page.path}/${images[0]?.src}`}
-              alt="image"
-              layout="fill"
-            />
-          </ImageWrapper>
+          <Img src={`${imagePath}${product.page.path}/${images[0]?.src}`} />
 
           <Btn side="left" size="small">
             Купить
@@ -71,15 +65,9 @@ const ImgContainer = styled.div`
   flex: 1 0;
 `;
 
-const ImageWrapper = styled.div`
-  overflow: hidden;
+const Img = styled(NextImage)`
   width: 80%;
-  height: 12vw;
-
-  img {
-    width: 100%;
-    max-height: 80%;
-  }
+  height: 16vw;
 `;
 
 const Btn = styled(Button)<{ side: string }>`

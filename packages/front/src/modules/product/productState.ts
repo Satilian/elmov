@@ -8,6 +8,7 @@ import { AppState } from "store";
 export interface ProductState {
   isLoading: boolean;
   products: ProductDto[];
+  item?: ProductDto;
 }
 
 export const initialState: ProductState = {
@@ -18,6 +19,11 @@ export const initialState: ProductState = {
 export const getProductsByCategory = createAsyncThunk<ProductDto[], PageDto["path"], ThunkApiType>(
   "product/getByCategory",
   (path) => productRep.fetchByCategory(path)
+);
+
+export const getProduct = createAsyncThunk<ProductDto, PageDto["path"], ThunkApiType>(
+  "product/getProduct",
+  (path) => productRep.fetchProduct(path)
 );
 
 export const { reducer: productReducer } = createSlice({
@@ -32,6 +38,14 @@ export const { reducer: productReducer } = createSlice({
         ...state,
         products,
         isLoading: false,
+      }))
+
+      .addCase(getProduct.pending, (state) => ({ ...state, isLoading: true }))
+      .addCase(getProduct.rejected, (state) => ({ ...state, isLoading: false }))
+      .addCase(getProduct.fulfilled, (state, { payload: item }) => ({
+        ...state,
+        item,
+        isLoading: false,
       }));
   },
 });
@@ -39,3 +53,4 @@ export const { reducer: productReducer } = createSlice({
 const state = ({ product }: AppState) => product;
 
 export const selectProductList = createSelector(state, ({ products }) => products);
+export const selectProduct = createSelector(state, ({ item }) => item || ({} as ProductDto));

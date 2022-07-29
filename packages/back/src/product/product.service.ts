@@ -12,4 +12,10 @@ export class ProductService {
       relations: ['page', 'category', 'category.page', 'images'],
       where: { category: { page: { path } } },
     });
+
+  getByProductPath = (path: Page['path']) =>
+    this.dbProvider.getRepository(Product).findOne({
+      relations: ['page', 'category', 'images'],
+      where: { page: { path } },
+    });
 }

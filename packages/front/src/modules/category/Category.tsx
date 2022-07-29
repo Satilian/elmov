@@ -1,14 +1,13 @@
 import styled from "astroturf/react";
 import { Preview } from "components/Preview";
-import { ProductDto } from "interfaces/product";
-import { ProductState, selectProductList } from "modules/product/productState";
+import { selectProductList } from "modules/product/productState";
 import { useRouter } from "next/router";
 import React from "react";
 import { useSelector } from "react-redux";
 
 export const Category = () => {
   const { asPath } = useRouter();
-  const productList = useSelector<ProductState, ProductDto[]>(selectProductList);
+  const productList = useSelector(selectProductList);
 
   return (
     <Container>

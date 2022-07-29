@@ -1,23 +1,24 @@
-import React from "react";
 import styled from "astroturf/react";
-import { useRouter } from "next/router";
 import { Tabs } from "components/Tabs";
 import { productTabs } from "consts/productTabs";
+import { useRouter } from "next/router";
+import React from "react";
+import { useSelector } from "react-redux";
 import { Gallery } from "./components/Gallery/Gallery";
-
-const items = ["0.png", "1.png", "2.png", "3.png"];
+import { selectProduct } from "./productState";
 
 export const ProductPage = () => {
   const {
     query: { prod },
   } = useRouter();
+  const { images = [] } = useSelector(selectProduct);
 
   return (
     <Container>
-      <Header>Product {prod}</Header>
+      <Header>{prod}</Header>
 
       <Content>
-        <Gallery items={items} />
+        <Gallery items={images} path={String(prod)} />
       </Content>
 
       <Tabs items={productTabs} />

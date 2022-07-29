@@ -1,17 +1,21 @@
 import { getLayout } from "components/Layout";
-import { PageType } from "interfaces/common";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { productRouts } from "routs/productRouts";
 
-const Product: PageType = () => {
+export default function Product() {
   const { pathname, asPath, replace } = useRouter();
   useEffect(() => {
     replace(`${pathname}${productRouts.feature.link}`, `${asPath}${productRouts.feature.link}`);
   }, []);
   return null;
-};
+}
 
 Product.getLayout = getLayout;
 
-export default Product;
+export const getServerSideProps: GetServerSideProps = async () => {
+  return {
+    props: { state: {} },
+  };
+};

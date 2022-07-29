@@ -7,6 +7,8 @@ export class ProductRep extends BaseRequest {
   }
 
   fetchByCategory = (path: PageDto["path"]) => this.get(`product/getByPage?path=${path}`);
+
+  fetchProduct = (path: PageDto["path"]) => this.get(`product/getProduct?path=${path}`);
 }
 
 export const productRep = new ProductRep();

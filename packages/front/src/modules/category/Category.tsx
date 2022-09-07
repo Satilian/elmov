@@ -1,20 +1,22 @@
 import styled from "astroturf/react";
 import { Preview } from "components/Preview";
-import { selectProductList } from "modules/product/productState";
+import { ProductDto } from "interfaces/product";
 import { useRouter } from "next/router";
 import React from "react";
-import { useSelector } from "react-redux";
 
-export const Category = () => {
+type Props = {
+  productList: ProductDto[];
+};
+
+export const Category = ({ productList }: Props) => {
   const { asPath } = useRouter();
-  const productList = useSelector(selectProductList);
 
   return (
     <Container>
       <h1>{asPath}</h1>
 
       <Content>
-        {productList.map((product) => (
+        {productList.map((product: ProductDto) => (
           <Preview key={product.id} product={product} />
         ))}
       </Content>

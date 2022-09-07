@@ -1,29 +1,26 @@
 import styled from "astroturf/react";
 import { Tabs } from "components/Tabs";
 import { productTabs } from "consts/productTabs";
-import { useRouter } from "next/router";
+import { ProductDto } from "interfaces/product";
 import React from "react";
-import { useSelector } from "react-redux";
-import { Gallery } from "./components/Gallery/Gallery";
-import { selectProduct } from "./productState";
+import { Gallery } from "./Gallery";
 
-export const ProductPage = () => {
-  const {
-    query: { prod },
-  } = useRouter();
-  const { images = [] } = useSelector(selectProduct);
+type Props = {
+  product?: ProductDto;
+};
 
-  return (
+export const ProductPage = ({ product }: Props) => {
+  return product ? (
     <Container>
-      <Header>{prod}</Header>
+      <Header>{product.page.name}</Header>
 
       <Content>
-        <Gallery items={images} path={String(prod)} />
+        <Gallery items={product.images} path={product.page.path} />
       </Content>
 
       <Tabs items={productTabs} />
     </Container>
-  );
+  ) : null;
 };
 
 const Container = styled.div`

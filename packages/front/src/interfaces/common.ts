@@ -1,11 +1,14 @@
 import { NextPage } from "next";
-import { AppState } from "store";
+import { CategoryDto } from "./category";
 
 export type PageType = NextPage<PageProps> & {
   getLayout?: (page: JSX.Element, pageProps: PageProps) => JSX.Element;
 };
 
-export type PageProps = {
-  state: AppState;
-  [key: string]: unknown;
+export type PageProps<T = { [key: string]: unknown }> = T & {
+  initialData?: InitialDataType;
+};
+
+export type InitialDataType = {
+  menuItems: CategoryDto[];
 };

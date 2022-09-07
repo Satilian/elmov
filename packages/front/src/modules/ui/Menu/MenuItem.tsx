@@ -67,7 +67,7 @@ export const MenuItem = ({
   );
 };
 
-export type StyledAnchorType = {
+export type StyledAnchorProps = {
   main?: boolean;
   topLevel?: boolean;
   inPlace?: boolean;
@@ -75,7 +75,7 @@ export type StyledAnchorType = {
   isOpen?: boolean;
 };
 
-const A = styled(Anchor)<StyledAnchorType>`
+const A = styled(Anchor)<StyledAnchorProps>`
   @import "variables";
   display: flex;
   justify-content: space-between;

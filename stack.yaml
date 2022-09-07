@@ -4,9 +4,9 @@ services:
   server:
     image: node:16
     user: node
-    working_dir: /home/node/app
+    working_dir: /home/app
     volumes:
-      - ./:/home/node/app
+      - ./:/home/app
     environment:
       NODE_ENV: production
     ports:

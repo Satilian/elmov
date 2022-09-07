@@ -1,19 +1,21 @@
+import { productRep } from "api/productRep";
 import { getLayout } from "components/Layout";
+import { ProductDto } from "interfaces/product";
 import { Category } from "modules/category/Category";
-import { getProductsByCategory } from "modules/product/productState";
 import { GetServerSideProps } from "next";
 import React from "react";
-import { store } from "store";
-import { getPartialState } from "util/getPartialState";
 
-export default function CategoryPage() {
-  return <Category />;
+type Props = {
+  productList: ProductDto[];
+};
+export default function CategoryPage({ productList }: Props) {
+  return <Category productList={productList} />;
 }
 
 CategoryPage.getLayout = getLayout;
 
-export const getServerSideProps: GetServerSideProps = async ({ req, params }) => {
-  await store.dispatch(getProductsByCategory(String(params?.cat)));
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const productList = await productRep.fetchByCategory(String(params?.cat));
 
-  return { props: { state: await getPartialState({ req, keys: ["product"] }) } };
+  return { props: { productList } };
 };

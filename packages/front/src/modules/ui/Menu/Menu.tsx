@@ -1,11 +1,9 @@
 import styled from "astroturf/react";
+import { Context } from "components/Provider";
 import { CrossIcon } from "icons/CrossIcon";
 import { CategoryDto } from "interfaces/category";
-import * as ui from "modules/ui/uiState";
 import { useRouter } from "next/router";
-import React, { Fragment } from "react";
-import { useSelector } from "react-redux";
-import { useAppDispatch } from "store";
+import React, { Fragment, useContext } from "react";
 import { MenuItem } from "./MenuItem";
 
 interface IProps {
@@ -14,30 +12,26 @@ interface IProps {
 }
 
 export const Menu = ({ items, topLevel }: IProps) => {
-  const subMenu = useSelector(ui.selectors.subMenu);
-  const isOpen = useSelector(ui.selectors.menuIsOpen);
   const { asPath } = useRouter();
-  const dispatch = useAppDispatch();
+  const { subMenu, setSubMenu } = useContext(Context);
 
   return (
     <Container topLevel={topLevel}>
-      {topLevel && isOpen && subMenu && (
-        <Icon main={asPath === "/"} onClick={() => dispatch(ui.actions.toggle())} />
-      )}
+      {topLevel && subMenu && <Icon main={asPath === "/"} onClick={() => setSubMenu()} />}
 
       {items.map(({ id, page, image, childrens }, i) => (
         <Fragment key={id}>
           <MenuItem
-            onClick={() => dispatch(ui.actions.setSubMenu(page.path))}
+            onClick={() => setSubMenu(page.path)}
             topLevel={topLevel}
             delay={i * 100}
             subCategory={childrens}
-            isOpen={isOpen && subMenu === page.path}
+            isOpen={page.path === subMenu}
             imgUrl={image}
             {...page}
           />
 
-          {!!childrens.length && isOpen && subMenu === page.path && <Menu items={childrens} />}
+          {!!childrens.length && page.path === subMenu && <Menu items={childrens} />}
         </Fragment>
       ))}
     </Container>

@@ -21,4 +21,17 @@ module.exports = {
 
     return config;
   },
+  async headers() {
+    return [
+      {
+        source: "/",
+        headers: [
+          {
+            key: "Cache-control",
+            value: "public, max-age=60, stale-while-revalidate=59",
+          },
+        ],
+      },
+    ];
+  },
 };

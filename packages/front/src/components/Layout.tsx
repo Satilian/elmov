@@ -1,12 +1,11 @@
 import styled from "astroturf/react";
 import { MenuSpacer } from "elements/MenuSpacer";
 import { PageProps } from "interfaces/common";
-import { categoriesSelectors } from "modules/category/categoryState";
 import { useRouter } from "next/router";
-import { ReactNode } from "react";
-import { useSelector } from "react-redux";
+import { ReactNode, useContext } from "react";
 import { Footer } from "../components/Footer";
-import { Menu } from "../modules/ui/components/Menu/Menu";
+import { Menu } from "../modules/ui/Menu/Menu";
+import { Context } from "./Provider";
 import { MainHeader } from "./MainHeader";
 
 type Props = PageProps & {
@@ -15,11 +14,11 @@ type Props = PageProps & {
 
 export const Layout = ({ children }: Props) => {
   const { pathname } = useRouter();
-  const menuItems = useSelector(categoriesSelectors);
+  const { initialData } = useContext(Context);
 
   return (
     <>
-      <Menu items={menuItems} topLevel />
+      <Menu items={initialData?.menuItems || []} topLevel />
 
       <Container>
         <HeaderWrapper>{pathname !== "/" && <MainHeader />}</HeaderWrapper>

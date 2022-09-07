@@ -66,8 +66,8 @@ const ImgContainer = styled.div`
 `;
 
 const Img = styled(NextImage)`
-  width: 80%;
-  height: 16vw;
+  width: 12vw;
+  height: 12vw;
 `;
 
 const Btn = styled(Button)<{ side: string }>`

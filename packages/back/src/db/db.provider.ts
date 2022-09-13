@@ -5,7 +5,7 @@ export const dbProvider = {
   useFactory: async () =>
     new DataSource({
       type: 'postgres',
-      host: 'localhost',
+      host: 'database',
       port: 5432,
       username: process.env.DB_USER,
       password: process.env.DB_PASS,

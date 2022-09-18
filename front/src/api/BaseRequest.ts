@@ -1,5 +1,9 @@
 export class BaseRequest {
-  constructor(private readonly baseuri = "/api/") {
+  constructor(
+    private readonly baseuri = typeof window === "undefined"
+      ? process.env.BACK_API_URL
+      : process.env.FRONT_API_URL
+  ) {
     this.headers.set("Accept", "application/json");
     this.headers.set("Content-type", "application/json");
   }

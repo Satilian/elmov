@@ -1,7 +1,11 @@
 import { Client } from 'pg';
 
 export async function dbinit() {
-  const client = new Client({ user: process.env.DB_USER, password: process.env.DB_PASS });
+  const client = new Client({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+  });
 
   await client.connect();
   let isCreated = true;

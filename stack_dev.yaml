@@ -7,22 +7,30 @@ services:
     environment:
       POSTGRES_PASSWORD: 1zad2bulki
     volumes:
-      - ./database-data:/var/lib/postgresql/data/
+      - ./pgdata:/var/lib/postgresql/data
 
   adminer:
     image: adminer
     restart: always
     ports:
       - 8080:8080
-      
-  app:
+
+  front:
     image: node:16
     user: node
-    working_dir: /home/app
+    working_dir: /home/node/app
     volumes:
-      - ./:/home/app
-    environment:
-      NODE_ENV: development
+      - ./front:/home/node/app
     ports:
       - 4000:4000
+    command: yarn start
+
+  back:
+    image: node:16
+    user: node
+    working_dir: /home/node/app
+    volumes:
+      - ./back:/home/node/app
+    ports:
+      - 5000:5000
     command: yarn start

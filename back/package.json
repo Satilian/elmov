@@ -8,8 +8,8 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
-    "start": "rimraf dist && env-cmd -f .env.dev nest start --watch",
-    "prod": "env-cmd nest build && node dist/main",
+    "start": "yarn && rimraf dist && env-cmd -f .env.dev nest start --watch",
+    "prod": "yarn && env-cmd nest build && env-cmd node dist/main",
     "typeorm": "typeorm-ts-node-commonjs",
     "nest": "nest"
   },

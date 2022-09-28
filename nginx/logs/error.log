@@ -41,3 +41,53 @@
 2022/09/18 08:00:43 [notice] 1#1: start worker process 25
 2022/09/18 08:00:43 [notice] 1#1: start worker process 26
 2022/09/18 08:00:43 [notice] 1#1: start worker process 27
+2022/09/19 06:06:22 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2022/09/19 06:06:22 [notice] 22#22: gracefully shutting down
+2022/09/19 06:06:22 [notice] 23#23: gracefully shutting down
+2022/09/19 06:06:22 [notice] 23#23: exiting
+2022/09/19 06:06:22 [notice] 27#27: gracefully shutting down
+2022/09/19 06:06:22 [notice] 27#27: exiting
+2022/09/19 06:06:22 [notice] 25#25: gracefully shutting down
+2022/09/19 06:06:22 [notice] 27#27: exit
+2022/09/19 06:06:22 [notice] 26#26: gracefully shutting down
+2022/09/19 06:06:22 [notice] 26#26: exiting
+2022/09/19 06:06:22 [notice] 24#24: gracefully shutting down
+2022/09/19 06:06:22 [notice] 22#22: exiting
+2022/09/19 06:06:22 [notice] 23#23: exit
+2022/09/19 06:06:22 [notice] 25#25: exiting
+2022/09/19 06:06:22 [notice] 26#26: exit
+2022/09/19 06:06:22 [notice] 24#24: exiting
+2022/09/19 06:06:22 [notice] 24#24: exit
+2022/09/19 06:06:22 [notice] 22#22: exit
+2022/09/19 06:06:22 [notice] 25#25: exit
+2022/09/19 06:06:22 [notice] 1#1: signal 17 (SIGCHLD) received from 24
+2022/09/19 06:06:22 [notice] 1#1: worker process 24 exited with code 0
+2022/09/19 06:06:22 [notice] 1#1: worker process 26 exited with code 0
+2022/09/19 06:06:22 [notice] 1#1: signal 29 (SIGIO) received
+2022/09/19 06:06:22 [notice] 1#1: signal 17 (SIGCHLD) received from 26
+2022/09/19 06:06:22 [notice] 1#1: signal 17 (SIGCHLD) received from 23
+2022/09/19 06:06:22 [notice] 1#1: worker process 22 exited with code 0
+2022/09/19 06:06:22 [notice] 1#1: worker process 23 exited with code 0
+2022/09/19 06:06:22 [notice] 1#1: signal 29 (SIGIO) received
+2022/09/19 06:06:22 [notice] 1#1: signal 17 (SIGCHLD) received from 27
+2022/09/19 06:06:22 [notice] 1#1: worker process 27 exited with code 0
+2022/09/19 06:06:22 [notice] 1#1: signal 29 (SIGIO) received
+2022/09/19 06:06:22 [notice] 1#1: signal 17 (SIGCHLD) received from 25
+2022/09/19 06:06:22 [notice] 1#1: worker process 25 exited with code 0
+2022/09/19 06:06:22 [notice] 1#1: exit
+2022/09/28 06:08:43 [notice] 1#1: using the "epoll" event method
+2022/09/28 06:08:43 [notice] 1#1: nginx/1.23.1
+2022/09/28 06:08:43 [notice] 1#1: built by gcc 10.2.1 20210110 (Debian 10.2.1-6) 
+2022/09/28 06:08:43 [notice] 1#1: OS: Linux 4.19.104-microsoft-standard
+2022/09/28 06:08:43 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/09/28 06:08:43 [notice] 1#1: start worker processes
+2022/09/28 06:08:43 [notice] 1#1: start worker process 22
+2022/09/28 06:08:43 [notice] 1#1: start worker process 23
+2022/09/28 06:08:43 [notice] 1#1: start worker process 24
+2022/09/28 06:08:43 [notice] 1#1: start worker process 25
+2022/09/28 06:08:43 [notice] 1#1: start worker process 26
+2022/09/28 06:08:43 [notice] 1#1: start worker process 27
+2022/09/28 06:09:25 [error] 22#22: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 10.0.0.2, server: elmove, request: "GET / HTTP/1.1", upstream: "http://10.0.9.5:3000/", host: "localhost"
+2022/09/28 06:09:25 [error] 22#22: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 10.0.0.2, server: elmove, request: "GET /favicon.ico HTTP/1.1", upstream: "http://10.0.9.5:3000/favicon.ico", host: "localhost", referrer: "http://localhost/"
+2022/09/28 06:09:28 [error] 22#22: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 10.0.0.2, server: elmove, request: "GET / HTTP/1.1", upstream: "http://10.0.9.5:3000/", host: "localhost"
+2022/09/28 06:09:28 [error] 22#22: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 10.0.0.2, server: elmove, request: "GET /favicon.ico HTTP/1.1", upstream: "http://10.0.9.5:3000/favicon.ico", host: "localhost", referrer: "http://localhost/"
